@@ -38,7 +38,7 @@
             <div>
               <mat-form-field class="full-width">
                 <mat-label>Last Updated</mat-label>
-                <input matInput formControlName="lasteUpdated" readonly>
+                <input matInput formControlName="lastUpdated" readonly>
               </mat-form-field>
             </div>
           </div>
@@ -51,8 +51,8 @@
   </mat-card-content>
   <mat-card-actions >
     <div class="pull-right">
-    <button mat-raised-button (click)="onEdit()" *ngIf="mode==='readonly'" color="accent">Edit</button>
-    <button mat-raised-button (click)="onSave()" *ngIf="mode==='edit'" color="primary">Save</button>
+    <button mat-raised-button (click)="onEdit()" *ngIf="mode==='readonly'" color="accent" id="edit-btn">Edit</button>
+    <button mat-raised-button (click)="onSave()" *ngIf="mode==='edit'" color="primary" id="save-btn">Save</button>
   </div>
   </mat-card-actions>
 </mat-card>

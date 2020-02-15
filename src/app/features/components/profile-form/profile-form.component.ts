@@ -77,6 +77,6 @@ export class ProfileFormComponent extends AbstractBaseUtil implements OnInit {
   }
 
   onSave(){
-    
+
   }
 }
