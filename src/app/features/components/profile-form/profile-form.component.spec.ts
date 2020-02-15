@@ -61,6 +61,46 @@ describe('ProfileFormComponent', () => {
   });
 
 
+  it("check mode: edit=> Input fields[name,age,weight] are enabled", () => {
+
+    component.mode = "edit";
+    fixture.detectChanges();
+
+    const namefield:DebugElement = el.query(By.css("input[formcontrolname='name'][disabled]"));
+        
+    expect(namefield).toBeNull("weight fields are found disabled");  
+
+    const ageField:DebugElement = el.query(By.css("input[formcontrolname='age'][disabled]"));
+        
+    expect(ageField).toBeNull("Weight fields are found disabled");  
+
+    const weightField:DebugElement = el.query(By.css("input[formcontrolname='weight'][disabled]"));
+        
+    expect(weightField).toBeNull("Weight field are found disabled");  
+
+  });
+
+
+  it("check mode: readonly=> Input fields[name,age,weight] are disabled", () => {
+
+    component.mode = "readonly";
+    fixture.detectChanges();
+
+    const namefield:DebugElement = el.query(By.css("input[formcontrolname='name'][disabled]"));
+        
+    expect(namefield).toBeTruthy("Name field is found enabled"); 
+
+    const ageField:DebugElement = el.query(By.css("input[formcontrolname='age'][disabled]"));
+        
+    expect(namefield).toBeTruthy("Age field is found enabled");
+
+    const weightField:DebugElement = el.query(By.css("input[formcontrolname='weight'][disabled]"));
+        
+    expect(namefield).toBeTruthy("Weight field is found enabled");
+
+  });
+
+
   
   it("check mode: readonly=> edit button Exits", () => {
 

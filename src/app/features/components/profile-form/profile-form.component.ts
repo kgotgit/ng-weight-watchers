@@ -17,7 +17,7 @@ export class ProfileFormComponent extends AbstractBaseUtil implements OnInit {
   @Input() personDetails:IPersonDetails=null;
 
   //mode to determine edit or readonly
-  @Input() mode:'edit'|'readonly'='edit';
+  @Input() mode:'edit'|'readonly'='readonly';
   
   //local variable to hold profile picture image data url
   _imgSrc:string;
@@ -38,8 +38,8 @@ export class ProfileFormComponent extends AbstractBaseUtil implements OnInit {
   createFormGroup():void{
     this._profileForm=this.fb.group({
       name:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.name))?this.personDetails.name:"",disabled:this.checkForMode()},[Validators.required]),
-      dob:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.dob))?this.personDetails.dob:"",disabled:this.checkForMode()},[Validators.required]),
       age:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.age))?this.personDetails.age:"",disabled:this.checkForMode()},[Validators.required]),
+      weight:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.weight))?this.personDetails.weight:"",disabled:this.checkForMode()},[Validators.required]),
       lastUpdated:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.lastUpdated))?this.personDetails.lastUpdated:"",disabled:true},[]),
       imgSrc: new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.imgSrc))?this.personDetails.imgSrc:"",disabled:false},[])
     });
