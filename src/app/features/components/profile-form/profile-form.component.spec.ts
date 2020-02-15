@@ -47,14 +47,14 @@ describe('ProfileFormComponent', () => {
 
   });
 
-  it("check mode: edit=> Save button Exits", () => {
+  it("check mode: edit=> Save button found.", () => {
 
     component.mode = "edit";
     fixture.detectChanges();
 
     const btn = el.queryAll(By.css("#save-btn"));
     
-    expect(btn).toBeTruthy("Required action buttons were not found");
+    expect(btn).toBeTruthy("Save button is not found");
 
     expect(btn.length).toEqual(1,"Save button is not found or more than one exists");
 
@@ -68,17 +68,19 @@ describe('ProfileFormComponent', () => {
 
     const namefield:DebugElement = el.query(By.css("input[formcontrolname='name'][disabled]"));
         
-    expect(namefield).toBeNull("weight fields are found disabled");  
+    expect(namefield).toBeNull("Name field are found disabled");  
 
     const ageField:DebugElement = el.query(By.css("input[formcontrolname='age'][disabled]"));
         
-    expect(ageField).toBeNull("Weight fields are found disabled");  
+    expect(ageField).toBeNull("Age field are found disabled");  
 
     const weightField:DebugElement = el.query(By.css("input[formcontrolname='weight'][disabled]"));
         
     expect(weightField).toBeNull("Weight field are found disabled");  
 
   });
+
+
 
 
   it("check mode: readonly=> Input fields[name,age,weight] are disabled", () => {
@@ -97,6 +99,25 @@ describe('ProfileFormComponent', () => {
     const weightField:DebugElement = el.query(By.css("input[formcontrolname='weight'][disabled]"));
         
     expect(namefield).toBeTruthy("Weight field is found enabled");
+
+  });
+
+  it("Last Updated field is readonly in both modes [Edit, Readonly]",()=>{
+    
+    component.mode = "readonly";
+    fixture.detectChanges();
+    
+    const lastInReadonly:DebugElement = el.query(By.css("input[formcontrolname='lastUpdated'][readonly]"));
+
+    expect(lastInReadonly).toBeTruthy("Last Updated is not found or is enabled in readonly mode"); 
+
+    component.mode = "edit";
+    fixture.detectChanges();
+
+
+    const lastInEdit:DebugElement = el.query(By.css("input[formcontrolname='lastUpdated'][readonly]"));
+
+    expect(lastInEdit).toBeTruthy("Last Updated is not found or is enabled in edit mode"); 
 
   });
 
