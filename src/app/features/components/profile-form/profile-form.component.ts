@@ -10,7 +10,7 @@ export class ProfileFormComponent implements OnInit {
 
   constructor() { }
 
-  @Input() personDetails:IPersonDetails; //holds data person details including weight history
+  @Input() personDetails:IPersonDetails=null; //holds data person details including weight history
 
   ngOnInit(): void {
   }

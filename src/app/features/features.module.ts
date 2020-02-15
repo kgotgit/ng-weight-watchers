@@ -9,6 +9,7 @@ import { ProfileFormComponent } from './components/profile-form/profile-form.com
   declarations: [ProfileFormComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports:[ProfileFormComponent]
 })
 export class FeaturesModule { }
