@@ -7,5 +7,6 @@ export interface IPersonDetails{
     dob:Date;
     weight:number;
     lastUpdated:Date;
+    imgSrc:string|ArrayBuffer;
     history:IWeightHistory[];
 }

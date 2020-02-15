@@ -1,7 +1,58 @@
-<div class="mdc-layout-grid">
-    <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell">hello</div>
-      <div class="mdc-layout-grid__cell">hello2</div>
-      <div class="mdc-layout-grid__cell">hello3</div>
-    </div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title color="primary">Profile</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <form [formGroup]="_profileForm">
+      <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell">
+            
+            <button mat-raised-button color="warn" (click)="fileInput.click()" *ngIf="!_imgSrc">Upload</button>
+            <input #fileInput type="file" formControlName="imgSrc" (change)="onFileInput($event)" single
+              accept="image/jpeg, .jpeg, image/png, .png" style="display:none;" />
+              <img id="image" [src]="_imgSrc" height="200" *ngIf="_imgSrc" />
+              <button mat-button color="accent" (click)="fileInput.click()" *ngIf="_imgSrc" title="Edit Profile Picture"><span class="material-icons">edit</span></button>
+          </div>
+         
+          <div class="mdc-layout-grid__cell">
+            <div>
+              <mat-form-field class="full-width">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" required>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="full-width">
+                <mat-label>Date Of Birth</mat-label>
+                <input matInput formControlName="dob" required>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="full-width">
+                <mat-label>Age</mat-label>
+                <input matInput formControlName="dob" required>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="full-width">
+                <mat-label>Last Updated</mat-label>
+                <input matInput formControlName="lasteUpdated" readonly>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+
+  </mat-card-content>
+  <mat-card-actions >
+    <div class="pull-right">
+    <button mat-raised-button (click)="onEdit()" *ngIf="mode==='readonly'" color="accent">Edit</button>
+    <button mat-raised-button (click)="onSave()" *ngIf="mode==='edit'" color="primary">Save</button>
   </div>
+  </mat-card-actions>
+</mat-card>

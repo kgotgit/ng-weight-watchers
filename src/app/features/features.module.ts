@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../shared/material/material.module';
 
 
 
@@ -8,7 +10,9 @@ import { ProfileFormComponent } from './components/profile-form/profile-form.com
 @NgModule({
   declarations: [ProfileFormComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    MaterialModule
   ],
   exports:[ProfileFormComponent]
 })
