@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IPersonDetails } from '../../models/person-details.interface';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AbstractBaseUtil } from 'src/app/shared/abstract-base/base.util';
+import { NumbersonlyDirective } from 'src/app/shared/directives/numbersonly/numbersonly.directive';
 
 @Component({
   selector: 'app-profile-form',
@@ -17,7 +18,7 @@ export class ProfileFormComponent extends AbstractBaseUtil implements OnInit {
   @Input() personDetails:IPersonDetails=null;
 
   //mode to determine edit or readonly
-  @Input() mode:'edit'|'readonly'='readonly';
+  @Input() mode:'edit'|'readonly'='edit';
   
   //local variable to hold profile picture image data url
   _imgSrc:string;
@@ -37,14 +38,18 @@ export class ProfileFormComponent extends AbstractBaseUtil implements OnInit {
    */
   createFormGroup():void{
     this._profileForm=this.fb.group({
-      name:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.name))?this.personDetails.name:"",disabled:this.checkForMode()},[Validators.required]),
-      age:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.age))?this.personDetails.age:"",disabled:this.checkForMode()},[Validators.required]),
-      weight:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.weight))?this.personDetails.weight:"",disabled:this.checkForMode()},[Validators.required]),
+      name:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.name))?this.personDetails.name:"",disabled:this.checkForMode()},[Validators.required,Validators.maxLength(100)]),
+      age:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.age))?this.personDetails.age:"",disabled:this.checkForMode()},[NumbersonlyDirective.validateNumbersOnly,Validators.maxLength(3)]),
+      weight:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.weight))?this.personDetails.weight:"",disabled:this.checkForMode()},[NumbersonlyDirective.validateNumbersOnly,Validators.maxLength(3)]),
       lastUpdated:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.lastUpdated))?this.personDetails.lastUpdated:"",disabled:true},[]),
       imgSrc: new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.imgSrc))?this.personDetails.imgSrc:"",disabled:false},[])
     });
   }
 
+
+  get formControl(){
+    return this._profileForm.controls;
+  }
   /**
    * To determine the current state of the form
    * if mode=='readonly' returns true else false

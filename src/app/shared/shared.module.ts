@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
+import { NumbersonlyDirective } from './directives/numbersonly/numbersonly.directive';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [NumbersonlyDirective],
   imports: [
     CommonModule,
     MaterialModule
   ],
   exports:[
-    MaterialModule
+    MaterialModule,
+    NumbersonlyDirective
   ]
 })
 export class SharedModule { }

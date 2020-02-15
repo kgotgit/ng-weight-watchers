@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material/material.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -12,7 +13,8 @@ import { MaterialModule } from '../shared/material/material.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   exports:[ProfileFormComponent]
 })
