@@ -6,12 +6,13 @@ import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
 import { NameWeightCardComponent } from './components/name-weight-card/name-weight-card.component';
 import { RouterModule } from '@angular/router';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 
 
 
 @NgModule({
-  declarations: [ProfileFormComponent, NameWeightCardComponent],
+  declarations: [ProfileFormComponent, NameWeightCardComponent, LineChartComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -19,6 +20,6 @@ import { RouterModule } from '@angular/router';
     SharedModule,
    
   ],
-  exports:[ProfileFormComponent,NameWeightCardComponent]
+  exports:[ProfileFormComponent,NameWeightCardComponent,LineChartComponent]
 })
 export class FeaturesModule { }

@@ -1,1 +1,5 @@
 <app-profile-form [personDetails]="_personDetails" mode="readonly"></app-profile-form>
+
+<mat-card>
+    <app-line-chart [weights]="_personDetails?.history"></app-line-chart>
+</mat-card>
