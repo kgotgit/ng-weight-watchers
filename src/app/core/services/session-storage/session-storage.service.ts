@@ -5,11 +5,12 @@ import { MockDataService } from '../mock-data/mock-data.service';
 import { Observable } from 'rxjs';
 import { IPersonDetails } from 'src/app/features/models/person-details.interface';
 import { map } from 'rxjs/operators';
+import { BaseService } from 'src/app/shared/abstract-base/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SessionStorageService extends AbstractBaseUtil {
+export class SessionStorageService extends BaseService {
 
   constructor(private mockDataService:MockDataService) {
     super();

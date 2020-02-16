@@ -17,15 +17,6 @@ export class MockDataService extends AbstractBaseUtil{
 
 
   loadUsersFromAssets(){
-   return this.http.get(this._jsonUrl);/* .pipe(
-          
-      map((data:any)=>{
-        let users:IPersonDetails[]=null;
-        if(this.isValidArrayWithData(data)){
-          users=data as IPersonDetails[];
-        } 
-        return users;    
-      })
-    ).subscribe(); */
+   return this.http.get(this._jsonUrl);
   }
 }

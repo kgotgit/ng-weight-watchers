@@ -22,8 +22,8 @@ export class PersonDetailsService extends BaseService{
    * Get all users
    */
   getAllUsers():Observable<IPersonDetails[]>{
-    let request=super.buildServiceRequest(ServiceUrls.GET_ALL_USERS,null);
-    return super.invokeGet(request).pipe(
+    let request=this.buildServiceRequest(ServiceUrls.GET_ALL_USERS,null);
+    return this.invokeGet(request).pipe(
       map((response:ServiceResponse<any>)=>{
         if(response!=null){
           return response.data as IPersonDetails[];
@@ -31,5 +31,24 @@ export class PersonDetailsService extends BaseService{
         return null;
       })
     );
+  }
+
+  /**
+   * Get User information by id
+   * @param id 
+   */
+  getUserById(id:number):Observable<IPersonDetails>{
+    //To ensure that enum value is not changed
+    let userURL=ServiceUrls.GET_USER.repeat(1)+"/"+id;
+    let request=this.buildServiceRequest(userURL);
+    return this.invokeGet(request).pipe(
+      map((response:ServiceResponse<any>)=>{
+        if(response!=null){
+          return response.data as IPersonDetails;
+        }
+        return null;
+      })
+    );
+
   }
 }
