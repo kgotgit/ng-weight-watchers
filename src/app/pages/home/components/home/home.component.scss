@@ -1,0 +1,15 @@
+.mat-card{
+    padding:1em;
+    button{
+        &.add-person-icon{
+            position: absolute;
+            top:0px;
+            right:0px;
+            span{
+                &.material-icons{
+                    font-size:34px;
+                }
+            }
+        }
+    }
+}

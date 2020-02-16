@@ -17,7 +17,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     CoreModule,
     SharedModule,
-    RouterModule,
+   
   ],
   exports:[ProfileFormComponent,NameWeightCardComponent]
 })

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/abstract-base/base.component';
+
 
 @Component({
   selector: 'app-name-weight-card',
@@ -13,12 +14,21 @@ export class NameWeightCardComponent extends BaseComponent {
   @Input() weight:number=0;
   @Input() id:number;
   @Input() userName:string;
+  @Output() cardClicked=new EventEmitter<number>();
 
   constructor() { 
     super();
   }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * emit id to the parent.
+   * 
+   */
+  onClick(){
+    this.cardClicked.emit(this.id);
   }
 
 }
