@@ -80,4 +80,25 @@ export class SessionStorageService extends BaseService {
       }
     });
   }
+
+
+  /**
+   * Return an observable stream of IPersonalDetails.
+   * @param id 
+   */
+  getUserForGivenId(id:number):Observable<IPersonDetails>{
+    return new Observable<IPersonDetails>(observer=>{
+      this.getUsersFromSession().pipe(
+        map((users:IPersonDetails[])=>{
+            let user:IPersonDetails=null;
+          if(this.isValidArrayWithData(users)){
+            let filteredUser:IPersonDetails[]=users.filter((iuser:IPersonDetails)=>{return iuser.id===id});
+            user=(this.isValidArrayWithData(filteredUser))?filteredUser[0]:null;
+          }
+            return user;
+        })
+      )
+    }); 
+
+  }
 }
