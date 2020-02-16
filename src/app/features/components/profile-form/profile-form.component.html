@@ -67,8 +67,8 @@
   </mat-card-content>
   <mat-card-actions >
     <div class="pull-right">
-    <button mat-raised-button (click)="onEdit()" *ngIf="mode==='readonly'" color="accent" id="edit-btn">Edit</button>
-    <button mat-raised-button (click)="onSave()" *ngIf="mode==='edit'" color="primary" id="save-btn">Save</button>
+    <button mat-raised-button (click)="onEdit()" *ngIf="mode==='readonly'" color="accent" id="edit-btn" [disabled]="_profileForm.invalid">Edit</button>
+    <button mat-raised-button (click)="onSave()" *ngIf="mode==='edit'" color="primary" id="save-btn" [disabled]="_profileForm.invalid">Save</button>
   </div>
   </mat-card-actions>
 </mat-card>

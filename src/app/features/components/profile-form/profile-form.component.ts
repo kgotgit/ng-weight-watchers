@@ -78,10 +78,37 @@ export class ProfileFormComponent extends AbstractBaseUtil implements OnInit {
   }
 
   onEdit(){
+    this.mode="edit";
+    this.changeFieldState();
 
   }
 
   onSave(){
-
+    this.mode="readonly";
+    this.changeFieldState();
   }
+
+  /**
+   * Delegate toggle field state change based  on the mode (edit or readonly)
+   */
+  changeFieldState(){
+    switch(this.mode){
+      case "edit":
+        this.enableOrDisableFormFields(false);
+        break;
+      case "readonly":
+        this.enableOrDisableFormFields(true);
+        break;
+    }
+  }
+
+  /**
+   * implements the field state change based on the flag provided.
+   */
+  enableOrDisableFormFields(disable:boolean){
+    (disable)?this._profileForm.controls.name.disable():this._profileForm.controls.name.enable();
+    (disable)?this._profileForm.controls.age.disable():this._profileForm.controls.age.enable();
+    (disable)?this._profileForm.controls.weight.disable():this._profileForm.controls.weight.enable();
+  }
+
 }
