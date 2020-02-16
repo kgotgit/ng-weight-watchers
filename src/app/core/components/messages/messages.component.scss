@@ -1,0 +1,12 @@
+.alert{
+    padding: 0.25rem;
+    &.alert-error{
+        color:red; //TODO: use scss gobal variable
+    }
+    &.alert-check{
+        color:green; //TODO: use scss gobal variable
+    }
+    &.alert-info{
+        color:blue;//TODO: use scss gobal variable
+    }
+}

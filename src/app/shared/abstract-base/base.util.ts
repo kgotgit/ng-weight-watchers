@@ -15,7 +15,7 @@ export abstract class AbstractBaseUtil{
     }
 
     /**
-   * Utility methods checks if the given object is an array with data
+   * Checks if the given object is an array with data
    * @param data
    */
   isValidArrayWithData(data: any) {
@@ -25,7 +25,7 @@ export abstract class AbstractBaseUtil{
     return false;
   }
   /**
-   * Utility methods checks if the given object is an array with data
+   * Checks if the given object is an array with data
    * @param data
    */
   isValidArray(data:any){
@@ -35,7 +35,7 @@ export abstract class AbstractBaseUtil{
     return false;
   }
   /**
-   * Utility method checks if the given data is valid i.e., not null, undefined and no empty string
+   * Checks if the given data is valid i.e., not null, undefined and no empty string
    * @param data
    */
   hasValue(data: any) {
@@ -48,7 +48,8 @@ export abstract class AbstractBaseUtil{
     return true
   }
   /**
-   * Utility method to check if value is null or empty and returns empty string.
+   * Check if value is null or empty and returns empty string.
+   * passed may be an array or string
    * @param value
    */
   getNullForEmtpy(value: any) {

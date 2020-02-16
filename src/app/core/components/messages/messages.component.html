@@ -1,1 +1,7 @@
-<p>messages works!</p>
+<div *ngIf="_showMsg" role="alert" aria-live="assertive">
+    <div *ngFor="let msg of _messages;trackBy:trackBymsg" class="alert alert-{{msg.type}}">
+    <p><span class="material-icons">{{msg.type}}</span>{{msg.message}}</p>
+    </div>
+</div>
+  
+  
