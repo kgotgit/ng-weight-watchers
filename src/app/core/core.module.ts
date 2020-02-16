@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../shared/material/material.module';
+
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
+import { MaterialModule } from './material/material.module';
 
 
 
@@ -11,6 +12,8 @@ import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.compon
     CommonModule,
     MaterialModule
   ],
-  exports:[TopToolbarComponent]
+  exports:[TopToolbarComponent,MaterialModule]
 })
+
+//Core module should not dependency with any other modules
 export class CoreModule { }

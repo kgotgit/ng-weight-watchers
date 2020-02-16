@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from './material/material.module';
+
 import { NumbersonlyDirective } from './directives/numbersonly/numbersonly.directive';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -9,10 +10,10 @@ import { NumbersonlyDirective } from './directives/numbersonly/numbersonly.direc
   declarations: [NumbersonlyDirective],
   imports: [
     CommonModule,
-    MaterialModule
+    CoreModule,
   ],
   exports:[
-    MaterialModule,
+   
     NumbersonlyDirective
   ]
 })
