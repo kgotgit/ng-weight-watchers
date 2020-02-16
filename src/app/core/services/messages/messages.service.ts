@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { MsgTypeEnum } from '../../enums/msg-type.enum';
 import { IMessage } from '../../models/message.interface';
-import { AbstractBaseUtil } from 'src/app/shared/abstract-base/base.util';
+import { AbstractBaseUtil } from '../../abstract-base/base.util';
+
 
 @Injectable({
   providedIn: 'root'

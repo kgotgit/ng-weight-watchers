@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from 'src/app/shared/abstract-base/base.component';
+
 import { Observable } from 'rxjs';
 import { IPersonDetails } from 'src/app/features/models/person-details.interface';
 import { Router } from '@angular/router';
+import { BaseComponent } from 'src/app/core/abstract-base/base.component';
 
 @Component({
   selector: 'app-home',

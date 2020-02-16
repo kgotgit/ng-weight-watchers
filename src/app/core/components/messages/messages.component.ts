@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BaseComponent } from 'src/app/shared/abstract-base/base.component';
+
 import { IMessage } from '../../models/message.interface';
 import { MessagesService } from '../../services/messages/messages.service';
 import { delay, map } from 'rxjs/operators';
+import { BaseComponent } from '../../abstract-base/base.component';
 
 @Component({
   selector: 'app-messages',

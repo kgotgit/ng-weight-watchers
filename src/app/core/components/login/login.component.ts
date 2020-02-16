@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { BaseComponent } from 'src/app/shared/abstract-base/base.component';
+
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPersonDetails } from 'src/app/features/models/person-details.interface';
@@ -9,6 +9,7 @@ import { map, takeUntil } from 'rxjs/operators';
 import { SessionStorageService } from '../../services/session-storage/session-storage.service';
 import { StorageKeys } from '../../enums/storage-keys.enum';
 import { Router } from '@angular/router';
+import { BaseComponent } from '../../abstract-base/base.component';
 
 @Component({
   selector: 'app-login',

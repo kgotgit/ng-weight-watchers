@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, takeUntil } from 'rxjs/operators';
-import { AbstractBaseUtil } from 'src/app/shared/abstract-base/base.util';
-import { IPersonDetails } from 'src/app/features/models/person-details.interface';
+import { AbstractBaseUtil } from '../../abstract-base/base.util';
+
 
 @Injectable({
   providedIn: 'root'

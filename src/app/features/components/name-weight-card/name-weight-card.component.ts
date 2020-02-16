@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { BaseComponent } from 'src/app/shared/abstract-base/base.component';
+import { BaseComponent } from 'src/app/core/abstract-base/base.component';
+
 
 
 @Component({

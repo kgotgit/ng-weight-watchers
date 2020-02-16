@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from 'src/app/shared/abstract-base/base.component';
+
 import { ActivatedRoute } from '@angular/router';
 import { Observable, forkJoin } from 'rxjs';
 import { IPersonDetails } from 'src/app/features/models/person-details.interface';
 import { takeUntil, concatMap } from 'rxjs/operators';
 import { PersonDetailsService } from 'src/app/features/services/person-details.service';
+import { BaseComponent } from 'src/app/core/abstract-base/base.component';
 
 @Component({
   selector: 'app-personal-dashboard',

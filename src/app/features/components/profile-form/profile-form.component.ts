@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IPersonDetails } from '../../models/person-details.interface';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { AbstractBaseUtil } from 'src/app/shared/abstract-base/base.util';
+
 import { NumbersonlyDirective } from 'src/app/shared/directives/numbersonly/numbersonly.directive';
-import { BaseComponent } from 'src/app/shared/abstract-base/base.component';
+import { BaseComponent } from 'src/app/core/abstract-base/base.component';
 
 @Component({
   selector: 'app-profile-form',
