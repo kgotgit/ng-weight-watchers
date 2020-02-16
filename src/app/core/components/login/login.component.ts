@@ -8,6 +8,7 @@ import { MockDataService } from '../../services/mock-data/mock-data.service';
 import { map, takeUntil } from 'rxjs/operators';
 import { SessionStorageService } from '../../services/session-storage/session-storage.service';
 import { StorageKeys } from '../../enums/storage-keys.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent extends BaseComponent {
   //For demo purpose only using mockData service to load users while login component is rendering
   constructor(private fb:FormBuilder,
               private mockDataService:MockDataService,
-              private storageService:SessionStorageService) { 
+              private storageService:SessionStorageService,
+              private router:Router) { 
     super();
   }
 
@@ -74,6 +76,7 @@ export class LoginComponent extends BaseComponent {
 
   login(){
    
+    this.router.navigateByUrl("/pages/home");
   }
 
 }

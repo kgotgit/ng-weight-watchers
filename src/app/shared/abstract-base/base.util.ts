@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 export abstract class AbstractBaseUtil{
 
     //Utility to add all subscriptions and destroy at once in ngOnDestroy to prevent any memory leaks
-    protected subsink=new SubSink();
+    subsink=new SubSink();
 
     //Compliementory to subsink to be used to inside rxjs pipe via takeUntil so that observable streams listen until the corresponding component is destroyed.
     protected _destroy$=new Subject();

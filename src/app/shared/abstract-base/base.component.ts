@@ -22,9 +22,9 @@ export abstract class BaseComponent extends AbstractBaseUtil implements OnInit, 
      * added to subsink or _destory$ subject unless need to handle by itself. 
      */
     ngOnDestroy(): void {
-        super.subsink.unsubscribe();
-        super._destroy$.next();
-        super._destroy$.complete();
+        this.subsink.unsubscribe();
+        this._destroy$.next();
+        this._destroy$.complete();
     }
     
 }
