@@ -4,12 +4,13 @@ import { ProfileFormComponent } from './components/profile-form/profile-form.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
+import { NameWeightCardComponent } from './components/name-weight-card/name-weight-card.component';
 
 
 
 
 @NgModule({
-  declarations: [ProfileFormComponent],
+  declarations: [ProfileFormComponent, NameWeightCardComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

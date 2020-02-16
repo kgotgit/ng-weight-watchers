@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CoreInjectorService } from 'src/app/core/services/core-injector/core-injector.service';
 import { ServiceRequest } from 'src/app/core/models/service-request.interface';
 import { Type } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ServiceResponse } from 'src/app/core/models/service-response.interface';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { AbstractBaseUtil } from './base.util';
 import { IMessage } from 'src/app/core/models/message.interface';
 import { MessagesService } from 'src/app/core/services/messages/messages.service';
 import { MsgTypeEnum } from 'src/app/core/enums/msg-type.enum';
+import { MessageEnum } from 'src/app/core/enums/messages.enum';
 
 export abstract class BaseService extends AbstractBaseUtil{
 
@@ -33,9 +34,13 @@ export abstract class BaseService extends AbstractBaseUtil{
         return this._http.post<ServiceResponse<any>>(this._REST_URL+request.url,request.data,this._httpOptions).pipe(
             tap((response:ServiceResponse<any>)=>{
                  //handle any error messages from service based on the handleError flag set by the caller.
-                 this.handleMessagesFromResponse(request,response);
-                
-            })
+                 this.handleMessagesFromResponse(request,response);                
+            }),
+            catchError((err)=>{
+                //use logger service to log errors
+                //return service error exception
+                return of(this.buildErrorResponse());
+               })
         );
     }
 
@@ -48,7 +53,12 @@ export abstract class BaseService extends AbstractBaseUtil{
             tap((response:ServiceResponse<any>)=>{//side effect
                  //handle any error messages from service based on the handleError flag set by the caller.
                 this.handleMessagesFromResponse(request,response);
-            })
+            }),
+            catchError((err)=>{
+                //use logger service to log errors
+                //return service error exception
+                return of(this.buildErrorResponse());
+               })
         );
     }
 
@@ -62,6 +72,11 @@ export abstract class BaseService extends AbstractBaseUtil{
             tap((response:ServiceResponse<any>)=>{//side effect
                 //handle any error messages from service based on the handleError flag set by the caller.
                this.handleMessagesFromResponse(request,response);
+           }),
+           catchError((err)=>{
+            //use logger service to log errors
+            //return service error exception
+            return of(this.buildErrorResponse());
            })
         );
     }
@@ -101,6 +116,10 @@ export abstract class BaseService extends AbstractBaseUtil{
      */
     buildServiceRequest(url:string,data:any=null,handleMessages:boolean=true){
         return {url:url,data:data,handleMessages:handleMessages} as ServiceRequest<any>;
+    }
+
+    buildErrorResponse(){
+        return {success:false,errorMsgs:MessageEnum.SERVICE_FAILIRE} as ServiceResponse<any>;
     }
 
 
