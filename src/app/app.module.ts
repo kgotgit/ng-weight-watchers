@@ -7,8 +7,9 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { FeaturesModule } from './features/features.module';
 import { CoreInjectorService } from './core/services/core-injector/core-injector.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpMockInterceptor } from './core/interceptor/http-mock.interceptor';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { HttpMockInterceptor } from './core/interceptor/http-mock.interceptor';
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,
-    FeaturesModule
+    FeaturesModule,
+    AppRoutingModule,
+    HttpClientModule
 
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:HttpMockInterceptor,multi:true}],

@@ -5,11 +5,12 @@ import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.compon
 import { MaterialModule } from './material/material.module';
 import { MessagesComponent } from './components/messages/messages.component';
 import { LoginComponent } from './components/login/login.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 
 @NgModule({
-  declarations: [TopToolbarComponent, MessagesComponent, LoginComponent],
+  declarations: [TopToolbarComponent, MessagesComponent, LoginComponent, PageNotFoundComponent],
   imports: [
     CommonModule,
     MaterialModule
