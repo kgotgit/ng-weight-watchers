@@ -57,6 +57,9 @@ export class ProfileFormComponent extends BaseComponent {
     });
   }
 
+  /**
+   * 
+   */
   updateFormGroup(){
     if(this.hasValue(this._personDetails)){
       this._profileForm.controls.name.setValue(this._personDetails.name);
@@ -67,7 +70,9 @@ export class ProfileFormComponent extends BaseComponent {
     }
   }
 
-
+  /**
+   * utility to get formcontrols from formGroup object
+   */
   get formControl(){
     return this._profileForm.controls;
   }
