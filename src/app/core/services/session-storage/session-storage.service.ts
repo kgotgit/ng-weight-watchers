@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { StorageKeys } from '../../enums/storage-keys.enum';
 import { AbstractBaseUtil } from 'src/app/shared/abstract-base/base.util';
+import { MockDataService } from '../mock-data/mock-data.service';
+import { Observable } from 'rxjs';
+import { IPersonDetails } from 'src/app/features/models/person-details.interface';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionStorageService extends AbstractBaseUtil {
 
-  constructor() {
+  constructor(private mockDataService:MockDataService) {
     super();
    }
 
@@ -43,5 +47,35 @@ export class SessionStorageService extends AbstractBaseUtil {
       }
     }
     return returnVal;
+  }
+
+
+  /**
+   * Get all users from session stroage. 
+   * If it doesn't exists in session storage then invoke service to get from backend as fallback mechanism
+   */
+  getUsersFromSession(): Observable<IPersonDetails[]> {
+    return new Observable<IPersonDetails[]>(observer => {
+      let users: IPersonDetails[] = this.getDataFromSessionStorageForKey(StorageKeys.USER_PROFILES) as IPersonDetails[];
+      if (this.isValidArrayWithData(users)) {
+        //data found call complete.
+        observer.next(users);
+        observer.complete();
+      } else {
+        this.mockDataService.loadUsersFromAssets().pipe(//TODO: deviating from DRY principal see login.component.ts.          
+          map((data: any) => {
+            let users: IPersonDetails[] = null;
+            if (this.isValidArrayWithData(data)) {
+              users = data as IPersonDetails[];
+            }
+            return users;
+          })
+        ).subscribe((data: IPersonDetails[]) => {
+          //data recieved call complete
+          observer.next(data);
+          observer.complete();
+        });
+      }
+    });
   }
 }

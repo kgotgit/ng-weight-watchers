@@ -1,1 +1,5 @@
-<p>home works!</p>
+<mat-card>
+    <ng-container  *ngFor="let user of _users$|async" >
+        <app-name-weight-card [name]="user.name" [weight]="user.weight" [id]="user.id"></app-name-weight-card>
+    </ng-container>
+</mat-card>

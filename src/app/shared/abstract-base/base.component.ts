@@ -1,12 +1,15 @@
 import { OnDestroy, OnInit } from '@angular/core';
 import { AbstractBaseUtil } from './base.util';
+import { SessionStorageService } from 'src/app/core/services/session-storage/session-storage.service';
+import { CoreInjectorService } from 'src/app/core/services/core-injector/core-injector.service';
 
 export abstract class BaseComponent extends AbstractBaseUtil implements OnInit, OnDestroy{
    
     
-    
+    _storageService:SessionStorageService;
     constructor(){
         super();
+        this._storageService=CoreInjectorService.injector.get(SessionStorageService);
     }
 
     /**

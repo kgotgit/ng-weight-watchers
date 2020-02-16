@@ -1,0 +1,22 @@
+.mat-card{
+    width:300px;
+    margin:auto;
+    text-align: center;
+    margin-bottom:30px;
+
+    h1{
+        span{
+            .suffix{
+                padding:0.25rem;
+                font-size:18px;
+            }
+        }
+    }
+    button{
+        &.delete-icon{
+            position: absolute;
+            top:0px;
+            right:0px;
+        }
+    }
+}

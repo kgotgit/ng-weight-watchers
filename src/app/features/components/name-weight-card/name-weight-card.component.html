@@ -1,4 +1,5 @@
 <mat-card>    
-    <a mat-button routerLink="pages/dashboard/{{id}}">{{name}}</a>
-    <h1>{{weight}}</h1>
+    <a mat-raised-button color="primary" routerLink="../../pages/dashboard/{{id}}">{{name}}</a>
+    <h1>{{weight}} <span class="suffix">lbs</span></h1>
+    <button mat-button color="warn" title="Delete. Click Here" class="delete-icon"><span class="material-icons">delete_forever</span></button>
 </mat-card>
