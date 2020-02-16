@@ -77,12 +77,19 @@ export class ProfileFormComponent extends AbstractBaseUtil implements OnInit {
     }
   }
 
+  /**
+   * change the form mode to edit
+   * 
+   */
   onEdit(){
     this.mode="edit";
     this.changeFieldState();
 
   }
 
+  /**
+   * Save data via service and change the mode to readonly
+   */
   onSave(){
     this.mode="readonly";
     this.changeFieldState();
