@@ -3,8 +3,8 @@ import { IWeightHistory } from './weight-history.interface';
 export interface IPersonDetails{
     id:number;//assuming mocked data will have unique id
     name:string;
+    username:string;
     age:number;
-    dob:Date;
     weight:number;
     lastUpdated:Date;
     imgSrc:string|ArrayBuffer;

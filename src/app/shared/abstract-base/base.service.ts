@@ -61,7 +61,13 @@ export abstract class BaseService extends AbstractBaseUtil{
 
 
 
-    handleErrorsFromResponse(response:ServiceResponse<any>){
+    handleErrorsFromResponse(request:ServiceRequest<any>, response:ServiceResponse<any>){
+        if(request && request.handleError){
+            if(response && response.error){
+                
+            }
+        }
+
 
     }
 

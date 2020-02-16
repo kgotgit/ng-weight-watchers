@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 import { MaterialModule } from './material/material.module';
+import { MessagesComponent } from './components/messages/messages.component';
 
 
 
 @NgModule({
-  declarations: [TopToolbarComponent],
+  declarations: [TopToolbarComponent, MessagesComponent],
   imports: [
     CommonModule,
     MaterialModule
