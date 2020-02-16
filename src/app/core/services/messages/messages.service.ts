@@ -47,6 +47,14 @@ export class MessagesService extends AbstractBaseUtil{
   }
 
   /**
+   * Emit messages
+   * @param messages 
+   */
+  showMessages(messages:IMessage[]){
+    this.emitMessages(messages);
+  }
+
+  /**
    * Build error messages array and emit
    * @param messages 
    */

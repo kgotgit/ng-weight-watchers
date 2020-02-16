@@ -18,8 +18,12 @@ export class PersonDetailsService extends BaseService{
 
   
 
+  /**
+   * Get all users
+   */
   getAllUsers():Observable<IPersonDetails[]>{
-    return super.invokeGet(ServiceUrls.GET_ALL_USERS).pipe(
+    let request=super.buildServiceRequest(ServiceUrls.GET_ALL_USERS,null);
+    return super.invokeGet(request).pipe(
       map((response:ServiceResponse<any>)=>{
         if(response!=null){
           return response.data as IPersonDetails[];

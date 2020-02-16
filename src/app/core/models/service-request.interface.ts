@@ -1,6 +1,8 @@
 export interface ServiceRequest<T>{
+       //service url
+       url:string;
        //generic data place holder
        data:T;
-       //delegate error handling to base class
-       handleError:boolean;//
+       //delegate message handling to base class
+       handleMessages:boolean;//
 }
