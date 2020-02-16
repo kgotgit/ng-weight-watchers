@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 
 import { NumbersonlyDirective } from 'src/app/shared/directives/numbersonly/numbersonly.directive';
 import { BaseComponent } from 'src/app/core/abstract-base/base.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile-form',
@@ -14,9 +15,11 @@ export class ProfileFormComponent extends BaseComponent {
 
   //form controls for a given form
   _profileForm:FormGroup;
-  
   //person details including weight history
-  @Input() personDetails:IPersonDetails=null;
+  _personDetails:IPersonDetails;
+  
+  
+ 
 
   //mode to determine edit or readonly
   @Input() mode:'edit'|'readonly'='edit';
@@ -24,8 +27,15 @@ export class ProfileFormComponent extends BaseComponent {
   //local variable to hold profile picture image data url
   _imgSrc:string;
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder,private domSanitzer:DomSanitizer) {
     super();
+   }
+
+   @Input()
+   set personDetails(personDetails:IPersonDetails){
+    this._personDetails=personDetails;
+    //need to update the form control with values as there is a possibility formGroup is already initiated.
+    this.updateFormGroup();
    }
 
   ngOnInit(): void {
@@ -45,6 +55,16 @@ export class ProfileFormComponent extends BaseComponent {
       lastUpdated:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.lastUpdated))?this.personDetails.lastUpdated:"",disabled:true},[]),
       imgSrc: new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.imgSrc))?this.personDetails.imgSrc:"",disabled:false},[])
     });
+  }
+
+  updateFormGroup(){
+    if(this.hasValue(this._personDetails)){
+      this._profileForm.controls.name.setValue(this._personDetails.name);
+      this._profileForm.controls.age.setValue(this._personDetails.age);
+      this._profileForm.controls.weight.setValue(this._personDetails.weight);
+      this._profileForm.controls.lastUpdated.setValue(this._personDetails.lastUpdated);
+      this._imgSrc=this._personDetails.imgSrc+"";
+    }
   }
 
 

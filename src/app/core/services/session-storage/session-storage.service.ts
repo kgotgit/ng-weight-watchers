@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
 import { IPersonDetails } from 'src/app/features/models/person-details.interface';
 import { map } from 'rxjs/operators';
 import { BaseService } from '../../abstract-base/base.service';
+import { ServiceResponse } from '../../models/service-response.interface';
+import { ServiceUrls } from '../../enums/service-url.enum';
+import { MessageEnum } from '../../enums/messages.enum';
 
 
 @Injectable({
@@ -64,7 +67,7 @@ export class SessionStorageService extends BaseService {
         observer.next(users);
         observer.complete();
       } else {
-        this.mockDataService.loadUsersFromAssets().pipe(//TODO: deviating from DRY principal see login.component.ts.          
+        this.mockDataService.loadUsersFromAssets().pipe(//TODO: deviating from DRY principle see login.component.ts.          
           map((data: any) => {
             let users: IPersonDetails[] = null;
             if (this.isValidArrayWithData(data)) {
@@ -83,22 +86,65 @@ export class SessionStorageService extends BaseService {
 
 
   /**
-   * Return an observable stream of IPersonalDetails.
+   * Return an observable stream of IPersonalDetails for given id.
    * @param id 
    */
   getUserForGivenId(id:number):Observable<IPersonDetails>{
     return new Observable<IPersonDetails>(observer=>{
+      //get all users from session
       this.getUsersFromSession().pipe(
         map((users:IPersonDetails[])=>{
             let user:IPersonDetails=null;
           if(this.isValidArrayWithData(users)){
+            //Filter user by given id
             let filteredUser:IPersonDetails[]=users.filter((iuser:IPersonDetails)=>{return iuser.id===id});
+            //set filtered user and return
             user=(this.isValidArrayWithData(filteredUser))?filteredUser[0]:null;
           }
             return user;
         })
-      )
+      ).subscribe((data:IPersonDetails)=>{
+        observer.next(data);
+        observer.complete();
+      })
     }); 
+  }
+
+
+  /**
+   * Process requested url and respond with data accordingly.
+   * @param url 
+   * @param body 
+   */
+  processRequestByUrl(url:string,body:any):Observable<ServiceResponse<any>>{
+
+    return new Observable<ServiceResponse<any>>(observer=>{
+      let response:ServiceResponse<any>=null;
+      //process get user by id url
+      //added starting '/' and trainling '/' to reduce possibility of other url having same subset of string.
+      if(url.indexOf("/"+ServiceUrls.GET_USER+"/")>-1){
+        let splitUrl=url.split("/");
+        let idStr:any=splitUrl[splitUrl.length-1];
+        if(!isNaN(idStr)){
+          this.getUserForGivenId(new Number(idStr).valueOf()).subscribe((data:IPersonDetails)=>{
+            observer.next({success:true,data:data} as ServiceResponse<any>);
+            observer.complete();
+          })
+        }
+      }else if(url.indexOf("/"+ServiceUrls.SAVE_USER+"/")>-1){
+        //implement save operation
+      }else if(url.indexOf("/"+ServiceUrls.DELETE_USER+"/")>-1){
+        //implement delete operation
+      }else{
+        response={success:false,data:null,errorMsgs:MessageEnum.NO_URL_FOUND} as ServiceResponse<any>;
+        observer.next(response)
+        observer.complete();
+      }  
+
+    });   
 
   }
+
+
+
 }

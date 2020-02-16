@@ -18,7 +18,7 @@ export class PersonalDashboardComponent extends BaseComponent {
     super();
   }
 
-  _personDetails$:Observable<IPersonDetails>;
+ _personDetails:IPersonDetails;
   _id:number;
   
   ngOnInit(): void {
@@ -29,16 +29,13 @@ export class PersonalDashboardComponent extends BaseComponent {
    * get person Id from activated route and load data from session
    */
   loadPersonDetails(){
-   this._personDetails$=new Observable<IPersonDetails>(observer=>{
     this.getIdFromRoute().pipe(
       takeUntil(this._destroy$),
       concatMap((id:number)=>{
         return this.personDetailsService.getUserById(id);
       })).subscribe((data:IPersonDetails)=>{
-        observer.next(data);
-        observer.complete();
+        this._personDetails=data;
       });
-   })
 
       
 
