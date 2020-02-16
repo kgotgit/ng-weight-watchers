@@ -17,8 +17,10 @@ describe('PersonDetailsService', () => {
     })
       .compileComponents()
       .then(() => {
+        //start --> required by AbstractBaseUtil to create HttpClient instance.
         inject=TestBed.get(Injector);
         CoreInjectorService.injector=inject;
+        //end-->Injector Service
         service=TestBed.get(PersonDetailsService);
         httpMock=TestBed.get(HttpTestingController);
        
