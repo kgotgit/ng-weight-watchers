@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPersonDetails } from 'src/app/features/models/person-details.interface';
 import { MockDataService } from '../../services/mock-data/mock-data.service';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { SessionStorageService } from '../../services/session-storage/session-storage.service';
 import { StorageKeys } from '../../enums/storage-keys.enum';
 
@@ -52,7 +52,10 @@ export class LoginComponent extends BaseComponent {
    * Load mock data users from assets
    */
   loadUsers(){
-    this.mockDataService.loadUsersFromAssets().pipe(          
+   this._users$=  new Observable<IPersonDetails[]>(observer=>{
+    this.mockDataService.loadUsersFromAssets().pipe(  
+      //listen to this observer stream until component is destroyed. 
+      takeUntil(this._destroy$),        
       map((data:any)=>{
         let users:IPersonDetails[]=null;
         if(this.isValidArrayWithData(data)){
@@ -61,7 +64,12 @@ export class LoginComponent extends BaseComponent {
         } 
         return users;    
       })
-    ).subscribe(); 
+    ).subscribe(((users:IPersonDetails[])=>{
+      observer.next(users);
+      observer.complete();
+    })); 
+   });
+   
   }
 
   login(){
