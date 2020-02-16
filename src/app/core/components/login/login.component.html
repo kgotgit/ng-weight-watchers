@@ -1,1 +1,31 @@
-<p>login works!</p>
+<mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>ng-weight-watchers</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+     <form [formGroup]="_loginForm">
+        <div>
+            <mat-form-field class="full-width">
+              <mat-label>User Name</mat-label>
+              <input matInput formControlName="username" required aria-label="Username" maxlength="100">
+              <mat-error *ngIf="formControl.username.hasError('required')">
+                Username is required.
+              </mat-error>              
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" required aria-label="Password" maxlength="100">
+              <mat-error *ngIf="formControl.password.hasError('required')">
+                Password is required.
+              </mat-error>              
+            </mat-form-field>
+          </div>
+     </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="warn">Login</button>
+    </mat-card-actions>
+  </mat-card>

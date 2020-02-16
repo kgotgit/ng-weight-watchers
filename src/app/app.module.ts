@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpMockInterceptor } from './core/interceptor/http-mock.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
     SharedModule,
     FeaturesModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    
 
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:HttpMockInterceptor,multi:true}],
