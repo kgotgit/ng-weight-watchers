@@ -4,9 +4,6 @@ import { ProfileFormComponent } from './profile-form.component';
 import { DebugElement } from '@angular/core';
 import { FeaturesModule } from '../../features.module';
 import { By } from '@angular/platform-browser';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from 'src/app/shared/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ProfileFormComponent', () => {

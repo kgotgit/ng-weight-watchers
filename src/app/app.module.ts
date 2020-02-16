@@ -7,6 +7,8 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { FeaturesModule } from './features/features.module';
 import { CoreInjectorService } from './core/services/core-injector/core-injector.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpMockInterceptor } from './core/interceptor/http-mock.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { CoreInjectorService } from './core/services/core-injector/core-injector
     FeaturesModule
 
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:HttpMockInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

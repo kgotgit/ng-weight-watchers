@@ -3,13 +3,14 @@ import { IPersonDetails } from '../../models/person-details.interface';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AbstractBaseUtil } from 'src/app/shared/abstract-base/base.util';
 import { NumbersonlyDirective } from 'src/app/shared/directives/numbersonly/numbersonly.directive';
+import { BaseComponent } from 'src/app/shared/abstract-base/base.component';
 
 @Component({
   selector: 'app-profile-form',
   templateUrl: './profile-form.component.html',
   styleUrls: ['./profile-form.component.scss']
 })
-export class ProfileFormComponent extends AbstractBaseUtil implements OnInit {
+export class ProfileFormComponent extends BaseComponent {
 
   //form controls for a given form
   _profileForm:FormGroup;
