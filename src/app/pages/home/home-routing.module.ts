@@ -11,7 +11,7 @@ const childRoutes: Routes=[
     path: "",
     component: HomeComponent,
     canActivate: [AuthGuardService] 
-  },
+  }
 ];
 @NgModule({
   imports:[RouterModule.forChild(childRoutes)],

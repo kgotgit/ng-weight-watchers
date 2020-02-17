@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren:()=>import('./pages/personal-dashboard/personal-dashboard.module').then(mod=>mod.PersonalDashboardModule)
   },
   { path: "", redirectTo: "pages/login", pathMatch: "full" },
-  { path: "**", component:PageNotFoundComponent },
+  { path: "**", component:PageNotFoundComponent }
  
 ];
 
