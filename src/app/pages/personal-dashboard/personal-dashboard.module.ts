@@ -4,6 +4,7 @@ import { PersonalDashboardComponent } from './components/personal-dashboard/pers
 import { PersonalDashboardRoutingModule } from './personal-dashboard-routing.module';
 import { FeaturesModule } from 'src/app/features/features.module';
 import { CoreModule } from 'src/app/core/core.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -14,6 +15,7 @@ import { CoreModule } from 'src/app/core/core.module';
     PersonalDashboardRoutingModule,
     FeaturesModule,
     CoreModule,
+    RouterModule,
   ]
 })
 export class PersonalDashboardModule { }

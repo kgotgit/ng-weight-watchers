@@ -6,7 +6,7 @@ import { MaterialModule } from './material/material.module';
 import { MessagesComponent } from './components/messages/messages.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -20,6 +20,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    FormsModule,
+    
   ],
   exports:[TopToolbarComponent,MaterialModule,LoginComponent]
 })
