@@ -52,4 +52,20 @@ export class PersonDetailsService extends BaseService{
     );
 
   }
+
+  /**
+   * invoke service to save data
+   * @param iPersonDetails 
+   */
+  saveChanges(iPersonDetails:IPersonDetails){
+    let request=this.buildServiceRequest(ServiceUrls.SAVE_USER,iPersonDetails);
+    return this.invokePost(request).pipe(
+      map((response:ServiceResponse<any>)=>{
+        if(response!=null){
+          return response.data as IPersonDetails;
+        }
+        return null;
+      })
+    );
+  }
 }

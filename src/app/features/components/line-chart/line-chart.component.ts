@@ -45,8 +45,12 @@ export class LineChartComponent extends BaseComponent{
           w.weight=iw.weight;
           this._weights.push(w);
         });
+        if(!this.svg){
        //initialize line chart.
         this.initializeChart();
+      }else{
+        this.updateChart();
+      }
       }
     }
 
@@ -69,6 +73,12 @@ export class LineChartComponent extends BaseComponent{
       this.drawLineChart();
     }
     /**
+     * implement response update to the chart
+     */
+    updateChart(){
+      //TODO:
+    }
+    /**
      *  //initialize SVG object
      */
     private initalizeD3SvgObject() {
@@ -82,7 +92,7 @@ export class LineChartComponent extends BaseComponent{
     private initializeXandYAxis() {
         this.xAxis = d3Scale.scaleTime().range([0, this.width]);
         this.yAxis = d3Scale.scaleLinear().range([this.height, 0]);
-        this.xAxis.domain(d3Array.extent(this._weights, (d:IWeightHistory) => d.lastUpdated ));
+        this.xAxis.domain(d3Array.extent(this._weights, (d:IWeightHistory) => <Date>d.lastUpdated ));
         this.yAxis.domain(d3Array.extent(this._weights, (d:IWeightHistory) => d.weight ));
     }
     /**
@@ -122,6 +132,11 @@ export class LineChartComponent extends BaseComponent{
             .datum(this._weights)
             .attr('class', 'line')
             .attr('d', this.line);
+    }
+
+    ngOnDestroy(){
+      super.ngOnDestroy();
+      d3.select('svg').remove();
     }
 
 }

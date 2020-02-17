@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
@@ -20,6 +20,7 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     SharedModule,
    
   ],
-  exports:[ProfileFormComponent,NameWeightCardComponent,LineChartComponent]
+  exports:[ProfileFormComponent,NameWeightCardComponent,LineChartComponent],
+  providers:[DatePipe]
 })
 export class FeaturesModule { }

@@ -1,5 +1,5 @@
-<app-profile-form [personDetails]="_personDetails" mode="readonly"></app-profile-form>
+<app-profile-form [personDetails]="_personDetails" mode="readonly" (dataChanged)="dataChanged($event)"></app-profile-form>
 
 <mat-card>
-    <app-line-chart [weights]="_personDetails?.history"></app-line-chart>
+    <app-line-chart [weights]="_iweights"  *ngIf="_iweights!=null"></app-line-chart>
 </mat-card>

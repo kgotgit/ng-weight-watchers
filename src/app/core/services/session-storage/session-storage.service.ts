@@ -4,7 +4,7 @@ import { StorageKeys } from '../../enums/storage-keys.enum';
 import { MockDataService } from '../mock-data/mock-data.service';
 import { Observable } from 'rxjs';
 import { IPersonDetails } from 'src/app/features/models/person-details.interface';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BaseService } from '../../abstract-base/base.service';
 import { ServiceResponse } from '../../models/service-response.interface';
 import { ServiceUrls } from '../../enums/service-url.enum';
@@ -131,9 +131,15 @@ export class SessionStorageService extends BaseService {
             observer.complete();
           })
         }
-      }else if(url.indexOf("/"+ServiceUrls.SAVE_USER+"/")>-1){
+      }else if(url.indexOf("/"+ServiceUrls.SAVE_USER)>-1){
         //implement save operation
-      }else if(url.indexOf("/"+ServiceUrls.DELETE_USER+"/")>-1){
+        let userDetails:IPersonDetails=body as IPersonDetails;
+        this.updateUserDetailsIntoSession(userDetails);
+        response={success:true,data:userDetails,errorMsgs:MessageEnum.NO_URL_FOUND} as ServiceResponse<any>;
+        observer.next(response)
+        observer.complete();
+        console.log(body);
+      }else if(url.indexOf("/"+ServiceUrls.DELETE_USER)>-1){
         //implement delete operation
       }else{
         response={success:false,data:null,errorMsgs:MessageEnum.NO_URL_FOUND} as ServiceResponse<any>;
@@ -142,6 +148,28 @@ export class SessionStorageService extends BaseService {
       }  
 
     });   
+
+  }
+
+  /**
+   * Updates userdetails into session
+   * @param iperson 
+   */
+  updateUserDetailsIntoSession(iperson:IPersonDetails){
+    
+    this.getUsersFromSession().pipe(
+      tap((ips:IPersonDetails[])=>{
+          let filteredItems:IPersonDetails[]=ips.filter((ip:IPersonDetails)=>{return ip.username!=iperson.username});
+          if(this.isValidArrayWithData(filteredItems)){
+            filteredItems.push(iperson);
+            this.setDataInSessionStroageForKey(StorageKeys.USER_PROFILES,filteredItems);
+          }else{
+            ips.push(iperson);
+            this.setDataInSessionStroageForKey(StorageKeys.USER_PROFILES,ips);
+          }
+
+
+      })).subscribe();
 
   }
 

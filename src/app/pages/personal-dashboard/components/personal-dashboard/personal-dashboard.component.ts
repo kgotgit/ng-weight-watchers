@@ -6,6 +6,7 @@ import { IPersonDetails } from 'src/app/features/models/person-details.interface
 import { takeUntil, concatMap } from 'rxjs/operators';
 import { PersonDetailsService } from 'src/app/features/services/person-details.service';
 import { BaseComponent } from 'src/app/core/abstract-base/base.component';
+import { IWeightHistory } from 'src/app/features/models/weight-history.interface';
 
 @Component({
   selector: 'app-personal-dashboard',
@@ -20,6 +21,7 @@ export class PersonalDashboardComponent extends BaseComponent {
 
  _personDetails:IPersonDetails;
   _id:number;
+  _iweights:IWeightHistory[];
   
   ngOnInit(): void {
     this.loadPersonDetails();
@@ -35,6 +37,8 @@ export class PersonalDashboardComponent extends BaseComponent {
         return this.personDetailsService.getUserById(id);
       })).subscribe((data:IPersonDetails)=>{
         this._personDetails=data;
+        this._iweights=[...this._personDetails.history];
+
       });
 
       
@@ -50,6 +54,15 @@ export class PersonalDashboardComponent extends BaseComponent {
         observer.complete();
       }));
     });
+  }
+
+
+  dataChanged(ipersonDetails:IPersonDetails){
+    this._personDetails=ipersonDetails;
+    this._iweights=null;
+    this._iweights=[...this._personDetails.history];
+    this.personDetailsService.saveChanges(this._personDetails).subscribe();
+
   }
 
 
