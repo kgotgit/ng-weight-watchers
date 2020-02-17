@@ -25,7 +25,6 @@ export class LoginComponent extends BaseComponent {
   //For demo purpose only using mockData service to load users while login component is rendering
   constructor(private fb:FormBuilder,
               private mockDataService:MockDataService,
-              private storageService:SessionStorageService,
               private router:Router) { 
     super();
   }
@@ -65,7 +64,7 @@ export class LoginComponent extends BaseComponent {
         let users:IPersonDetails[]=null;
         if(this.isValidArrayWithData(data)){
           users=data as IPersonDetails[];
-          this.storageService.setDataInSessionStroageForKey(StorageKeys.USER_PROFILES,users);
+          this._storageService.setDataInSessionStroageForKey(StorageKeys.USER_PROFILES,users);
         } 
         return users;    
       })

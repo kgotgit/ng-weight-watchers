@@ -19,8 +19,7 @@ import { RouterModule } from '@angular/router';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule,
-    FormsModule,
+ 
     
   ],
   exports:[TopToolbarComponent,MaterialModule,LoginComponent]
