@@ -86,7 +86,7 @@ export class LoginComponent extends BaseComponent {
           user.username=userName;
           this._storageService.setDataInSessionStroageForKey(StorageKeys.CURRENT_USER,user);
           this.router.navigateByUrl("/pages/home");
-          this._storageService.emitIsLoggedin(false);
+          this._storageService.emitIsLoggedin(true);
         }else{
           this._invalidUser=true; 
         }

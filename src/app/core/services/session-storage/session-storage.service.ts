@@ -9,6 +9,7 @@ import { BaseService } from '../../abstract-base/base.service';
 import { ServiceResponse } from '../../models/service-response.interface';
 import { ServiceUrls } from '../../enums/service-url.enum';
 import { MessageEnum } from '../../enums/messages.enum';
+import { IUser } from '../../models/user.interface';
 
 
 @Injectable({
@@ -49,7 +50,7 @@ export class SessionStorageService extends BaseService {
     //ensure sessionStroage object is available
     if(this.hasValue(sessionStorage)){
       let item=sessionStorage.getItem(key);
-      if(this.hasValue(sessionStorage)){
+      if(this.hasValue(item)){
         //decode and parse the string to json Object
         returnVal=JSON.parse(atob(item));
       }
@@ -207,8 +208,12 @@ export class SessionStorageService extends BaseService {
   listenToisLogged(){
     return this._isLogged$.asObservable();
   }
+  /**
+   * Emit current value for isLoggedIn flag
+    * @param isLoggedin 
+   */
   emitIsLoggedin(isLoggedin:boolean){
-    this._isLogged$.next(true)
+    this._isLogged$.next(isLoggedin);
   }
 
 
@@ -217,6 +222,21 @@ export class SessionStorageService extends BaseService {
       sessionStorage.clear();
       this.emitIsLoggedin(false);
     }
+  }
+
+  /**
+   * To check if user is logged in or not.
+   */
+  isUserLoggedIn(){
+    return (this.hasValue(this.getUserName()))?true:false;
+  }
+
+  getUserName(){
+    let user:IUser=this.getDataFromSessionStorageForKey(StorageKeys.CURRENT_USER) as IUser;
+    if(this.hasValue(user) && this.hasValue(user.username)){
+      return user.username;
+    }
+    return null;
   }
 
 

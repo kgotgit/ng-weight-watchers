@@ -24,6 +24,7 @@ export class TopToolbarComponent extends BaseComponent {
   logout(){
     this._storageService.clearAll();
     this.router.navigateByUrl("pages/login");
+    this._storageService.emitIsLoggedin(false);
 
   }
 
