@@ -1,5 +1,6 @@
+
 <mat-card>
-  <mat-card-header>
+    <mat-card-header>  
     <mat-card-title color="primary">Profile</mat-card-title>
   </mat-card-header>
   <mat-card-content>
@@ -10,10 +11,10 @@
           <div class="mdc-layout-grid__cell">
             
             <button mat-raised-button color="warn" (click)="fileInput.click()" *ngIf="!_imgSrc">Upload</button>
-            <input #fileInput type="file" formControlName="imgSrc" (change)="onFileInput($event)" single
+            <input #fileInput type="file"  (change)="onFileInput($event)" single
               accept="image/jpeg, .jpeg, image/png, .png" style="display:none;" />
               <img id="image" [src]="_imgSrc" height="200" *ngIf="_imgSrc" />
-              <button mat-button color="accent" (click)="fileInput.click()" *ngIf="_imgSrc" title="Edit Profile Picture"><span class="material-icons">edit</span></button>
+              <button mat-button color="accent" (click)="fileInput.click()" *ngIf="_imgSrc" title="Edit Profile Picture" [disabled]="_editProfilePic"><span class="material-icons">edit</span></button>
           </div>
          
           <div class="mdc-layout-grid__cell">

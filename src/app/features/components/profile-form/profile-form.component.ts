@@ -34,6 +34,9 @@ export class ProfileFormComponent extends BaseComponent {
   //local variable to hold profile picture image data url
   _imgSrc:string;
 
+  //to enable or disable edit profile pic
+  _editProfilePic:"disabled"|null=null;
+
   constructor(private fb:FormBuilder,
     private domSanitzer:DomSanitizer,
     private datePipe:DatePipe) {
@@ -76,6 +79,9 @@ export class ProfileFormComponent extends BaseComponent {
       this._profileForm.controls.weight.setValue(this._personDetails.weight);
       this._profileForm.controls.lastUpdated.setValue(this._personDetails.lastUpdated);
       this._imgSrc=this._personDetails.imgSrc+"";
+      if(this._imgSrc){
+        this._editProfilePic="disabled";
+      }
     }
   }
 
@@ -104,10 +110,9 @@ export class ProfileFormComponent extends BaseComponent {
       const [file]=$event.target.files;
       fileReader.readAsDataURL(file);
       fileReader.onload=()=>{
-        this._imgSrc=fileReader.result as string;
-        this._profileForm.patchValue({
-          imgSrc:fileReader.result as string
-        });
+        this._imgSrc=fileReader.result as string;        
+        let imgs=this._imgSrc.repeat(1);
+        this._personDetails.imgSrc=imgs;       
       }
     }
   }
@@ -175,6 +180,13 @@ export class ProfileFormComponent extends BaseComponent {
     (disable)?this._profileForm.controls.name.disable():this._profileForm.controls.name.enable();
     (disable)?this._profileForm.controls.age.disable():this._profileForm.controls.age.enable();
     (disable)?this._profileForm.controls.weight.disable():this._profileForm.controls.weight.enable();
+    if(disable){
+      this._editProfilePic="disabled";
+    }else{
+      this._editProfilePic=null;
+    }
   }
+
+ 
 
 }
