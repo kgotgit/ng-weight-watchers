@@ -12,15 +12,14 @@ Use 'npm run test' to run unit testing using Karma/Jasmin
 
 
 ## Running code coverage test
-
 Use 'npm run code:coverage'. Sample output will have something similar
-=============================== Coverage summary ===============================
+
+### code coverage results
+
 Statements   : 31.51% ( 144/457 )
 Branches     : 14.91% ( 24/161 )
 Functions    : 22.78% ( 36/158 )
 Lines        : 27.68% ( 116/419 )
-================================================================================
-
 
 ## Running end-to-end tests
 TODO: implement cypress.io e2e testing
