@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ElementRef } from '@angular/core';
 
 import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
@@ -26,11 +26,13 @@ export class LineChartComponent extends BaseComponent{
      svg: any;
      line: d3Shape.Line<[number, number]>;
      _weights:IWeightHistory[];
+     hostElement;
     
-    constructor() {
+    constructor(private eleRef:ElementRef) {
         super();
         this.width = 900 - this.margin.left - this.margin.right;
         this.height = 500 - this.margin.top - this.margin.bottom;
+        this.hostElement=this.eleRef.nativeElement;
     }
     @Input()
     set weights(weights:IWeightHistory[]){
@@ -82,7 +84,7 @@ export class LineChartComponent extends BaseComponent{
      *  //initialize SVG object
      */
     private initalizeD3SvgObject() {
-        this.svg = d3.select('svg')
+        this.svg = d3.select(this.hostElement).append('svg').attr("height","500").attr("width","900")
             .append('g')
             .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
     }
@@ -136,7 +138,11 @@ export class LineChartComponent extends BaseComponent{
 
     ngOnDestroy(){
       super.ngOnDestroy();
-      d3.select('svg').remove();
+      console.log("ngDestroy called");
+      d3.selectAll("svg > *").remove();
+      d3.select(this.hostElement).select('svg').remove();
+      this.svg.selectAll("*").remove();
+      //this.svg=null;
     }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, forkJoin } from 'rxjs';
 import { IPersonDetails } from 'src/app/features/models/person-details.interface';
 import { takeUntil, concatMap } from 'rxjs/operators';
@@ -15,7 +15,9 @@ import { IWeightHistory } from 'src/app/features/models/weight-history.interface
 })
 export class PersonalDashboardComponent extends BaseComponent {
 
-  constructor(private activatedRoute:ActivatedRoute,private personDetailsService:PersonDetailsService) { 
+  constructor(private activatedRoute:ActivatedRoute,
+    private personDetailsService:PersonDetailsService,
+    private router:Router) { 
     super();
   }
 
@@ -61,7 +63,9 @@ export class PersonalDashboardComponent extends BaseComponent {
     this._personDetails=ipersonDetails;
     this._iweights=null;
     this._iweights=[...this._personDetails.history];
-    this.personDetailsService.saveChanges(this._personDetails).subscribe();
+    this.personDetailsService.saveChanges(this._personDetails).subscribe((data)=>{
+      this.router.navigateByUrl("pages/home");
+    });
 
   }
 
