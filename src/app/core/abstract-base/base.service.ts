@@ -81,6 +81,24 @@ export abstract class BaseService extends AbstractBaseUtil{
         );
     }
 
+    /**
+     * Used by child services to invoke delete operation
+     * @param request 
+     */
+    invokeDelete(request:ServiceRequest<any>):Observable<ServiceResponse<any>>{
+        return this._http.delete(this._REST_URL+request.url,this._httpOptions).pipe(
+            tap((response:ServiceResponse<any>)=>{//side effect
+                //handle any error messages from service based on the handleError flag set by the caller.
+               this.handleMessagesFromResponse(request,response);
+           }),
+           catchError((err)=>{
+            //use logger service to log errors
+            //return service error exception
+            return of(this.buildErrorResponse());
+           })
+        );
+    }
+
 
     //TODO: Add for Delete
     //TODO: Add for Patch

@@ -1,5 +1,5 @@
 <mat-card>    
     <button mat-raised-button color="primary" (click)="onClick()">{{name}}</button>
     <h1>{{weight}} <span class="suffix">lbs</span></h1>
-    <button mat-button color="warn" title="Delete. Click Here" class="delete-icon"><span class="material-icons">delete_forever</span></button>
+    <button mat-button color="warn" title="Delete. Click Here" class="delete-icon" (click)="onDelete()"><span class="material-icons">delete_forever</span></button>
 </mat-card>

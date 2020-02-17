@@ -16,6 +16,7 @@ export class NameWeightCardComponent extends BaseComponent {
   @Input() id:number;
   @Input() userName:string;
   @Output() cardClicked=new EventEmitter<number>();
+  @Output() deleteClicked=new EventEmitter<number>();
 
   constructor() { 
     super();
@@ -30,6 +31,13 @@ export class NameWeightCardComponent extends BaseComponent {
    */
   onClick(){
     this.cardClicked.emit(this.id);
+  }
+
+  /**
+   * emit id to the parent on delete icon clicked
+   */
+  onDelete(){
+    this.deleteClicked.emit(this.id);
   }
 
 }

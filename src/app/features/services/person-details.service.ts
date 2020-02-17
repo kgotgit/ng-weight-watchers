@@ -68,4 +68,22 @@ export class PersonDetailsService extends BaseService{
       })
     );
   }
+
+
+  /**
+   * 
+   * @param id 
+   */
+  deleteById(id:number){
+    let url=ServiceUrls.DELETE_USER.repeat(1)+"/"+id;
+    let request=this.buildServiceRequest(url,null);
+    return this.invokePost(request).pipe(
+      map((response:ServiceResponse<any>)=>{
+        if(response!=null){
+          return response.data as IPersonDetails[];
+        }
+        return null;
+      })
+    );
+  }
 }

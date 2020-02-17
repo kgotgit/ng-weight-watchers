@@ -168,8 +168,15 @@ export class SessionStorageService extends BaseService {
         observer.next(response)
         observer.complete();
         console.log(body);
-      }else if(url.indexOf("/"+ServiceUrls.DELETE_USER)>-1){
-        //implement delete operation
+      }else if(url.indexOf("/"+ServiceUrls.DELETE_USER+"/")>-1){
+        let splitUrl=url.split("/");
+        let idStr:any=splitUrl[splitUrl.length-1];
+        if(!isNaN(idStr)){
+          this.removeUserForGivenId(new Number(idStr).valueOf()).subscribe((ip:IPersonDetails[])=>{
+            observer.next({success:true,data:ip} as ServiceResponse<any>);
+            observer.complete();
+          })
+        }
       }else{
         response={success:false,data:null,errorMsgs:MessageEnum.NO_URL_FOUND} as ServiceResponse<any>;
         observer.next(response)
@@ -200,6 +207,21 @@ export class SessionStorageService extends BaseService {
 
       })).subscribe();
 
+  }
+
+  /**
+   * 
+   * @param id 
+   */
+  removeUserForGivenId(id:number){
+    return this.getUsersFromSession().pipe(
+      map((ips:IPersonDetails[])=>{
+          let filteredItems:IPersonDetails[]=ips.filter((ip:IPersonDetails)=>{return ip.id!=id});
+          if(this.isValidArrayWithData(filteredItems)){
+            this.setDataInSessionStroageForKey(StorageKeys.USER_PROFILES,filteredItems);
+          }
+          return filteredItems;
+      }));
   }
 
   /**

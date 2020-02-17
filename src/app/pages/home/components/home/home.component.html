@@ -1,6 +1,6 @@
 <mat-card>
     <button mat-button color="accent" title="Add new friend. Click Here" class="add-person-icon"><span class="material-icons">person_add</span></button>
     <ng-container  *ngFor="let user of _users$|async" >
-        <app-name-weight-card [name]="user.name" [weight]="user.weight" [id]="user.id" (cardClicked)="cardClicked($event)"></app-name-weight-card>
+        <app-name-weight-card [name]="user.name" [weight]="user.weight" [id]="user.id" (cardClicked)="cardClicked($event)" (deleteClicked)="deleteClicked($event)"></app-name-weight-card>
     </ng-container>
 </mat-card>
