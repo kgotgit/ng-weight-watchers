@@ -3,8 +3,8 @@
   <div class="mdc-layout-grid__inner">
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 demo-cell"></div>
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8 demo-cell">
-     
-        <button mat-raised-button color="warn" title="Back to Home. Click Here" (click)="goHome()"><span class="material-icons">home</span></button>
+        <!--TODO: breadcrumb would be better-->
+        <button mat-raised-button color="warn" title="Back to Home. Click Here" (click)="goHome()" *ngIf="_isLoggedIn"><span class="material-icons">home</span></button>
      
       <router-outlet></router-outlet>
     </div>

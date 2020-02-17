@@ -1,4 +1,8 @@
 <mat-toolbar color="primary">
     <span class="material-icons">games</span>
     <span class="brand-title" >ng-weight-watchers</span>
+    <span class="fill-space"></span>
+    <button mat-raised-button (click)="logout()" *ngIf="_isLoggedIn">
+     Logout
+    </button>
   </mat-toolbar>

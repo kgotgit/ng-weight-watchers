@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { StorageKeys } from '../../enums/storage-keys.enum';
 
 import { MockDataService } from '../mock-data/mock-data.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { IPersonDetails } from 'src/app/features/models/person-details.interface';
 import { map, tap } from 'rxjs/operators';
 import { BaseService } from '../../abstract-base/base.service';
@@ -15,6 +15,9 @@ import { MessageEnum } from '../../enums/messages.enum';
   providedIn: 'root'
 })
 export class SessionStorageService extends BaseService {
+
+  //subject
+  _isLogged$=new Subject<boolean>();
 
   constructor(private mockDataService:MockDataService) {
     super();
@@ -173,6 +176,23 @@ export class SessionStorageService extends BaseService {
 
   }
 
+  /**
+   * emit
+   */
+  listenToisLogged(){
+    return this._isLogged$.asObservable();
+  }
+  emitIsLoggedin(isLoggedin:boolean){
+    this._isLogged$.next(true)
+  }
+
+
+  clearAll(){
+    if(this.hasValue(sessionStorage)){
+      sessionStorage.clear();
+      this.emitIsLoggedin(false);
+    }
+  }
 
 
 }
