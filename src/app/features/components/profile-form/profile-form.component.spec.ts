@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileFormComponent } from './profile-form.component';
-import { DebugElement } from '@angular/core';
+import { DebugElement, Injector } from '@angular/core';
 import { FeaturesModule } from '../../features.module';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoreInjectorService } from 'src/app/core/services/core-injector/core-injector.service';
 
 describe('ProfileFormComponent', () => {
   let component: ProfileFormComponent;
@@ -18,7 +19,7 @@ describe('ProfileFormComponent', () => {
     })
       .compileComponents()
       .then(() => {
-
+        CoreInjectorService.injector=TestBed.get(Injector);
         fixture = TestBed.createComponent(ProfileFormComponent);
         component = fixture.componentInstance;
         el = fixture.debugElement;
