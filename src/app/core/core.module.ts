@@ -22,7 +22,7 @@ import { RouterModule } from '@angular/router';
  
     
   ],
-  exports:[TopToolbarComponent,MaterialModule,LoginComponent]
+  exports:[TopToolbarComponent,MaterialModule,LoginComponent,MessagesComponent]
 })
 
 //Core module should not dependency with any other modules
