@@ -10,6 +10,7 @@ import { SessionStorageService } from '../../services/session-storage/session-st
 import { StorageKeys } from '../../enums/storage-keys.enum';
 import { Router } from '@angular/router';
 import { BaseComponent } from '../../abstract-base/base.component';
+import { IUser } from '../../models/user.interface';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ import { BaseComponent } from '../../abstract-base/base.component';
 export class LoginComponent extends BaseComponent {
 
   _loginForm:FormGroup;
-  _users$:Observable<IPersonDetails[]>;
+  _users:IPersonDetails[];
+  _invalidUser:boolean=false;
   //For demo purpose only using mockData service to load users while login component is rendering
   constructor(private fb:FormBuilder,
               private mockDataService:MockDataService,
@@ -39,8 +41,8 @@ export class LoginComponent extends BaseComponent {
    */
   createFormGroup(){
     this._loginForm=this.fb.group({
-      username:new FormControl({value:"",disabled:false},[Validators.required,Validators.maxLength(100)]),
-      password: new FormControl({value:"",disabled:false},[Validators.required])
+      username:new FormControl({value:"",disabled:false},[Validators.required,Validators.maxLength(50)]),
+      password: new FormControl({value:"",disabled:false},[Validators.required,Validators.maxLength(50)])
     
     });
   }
@@ -55,7 +57,7 @@ export class LoginComponent extends BaseComponent {
    * Load mock data users from assets
    */
   loadUsers(){
-   this._users$=  new Observable<IPersonDetails[]>(observer=>{
+  //
     this.mockDataService.loadUsersFromAssets().pipe(  
       //listen to this observer stream until component is destroyed. 
       takeUntil(this._destroy$),        
@@ -68,16 +70,30 @@ export class LoginComponent extends BaseComponent {
         return users;    
       })
     ).subscribe(((users:IPersonDetails[])=>{
-      observer.next(users);
-      observer.complete();
+      this._users=users;
     })); 
-   });
+  
    
   }
 
   login(){
-   
-    this.router.navigateByUrl("/pages/home");
+    let userName:string=this._loginForm.controls.username.value;
+    let password=this._loginForm.controls.password.value;
+    if(this.isValidArrayWithData(this._users)){
+      let ip:IPersonDetails[]=this._users.filter((p:IPersonDetails)=>{return p.username==userName});
+        if(this.isValidArrayWithData(ip)){
+          let user:IUser=new Object() as IUser;
+          user.username=userName;
+          this._storageService.setDataInSessionStroageForKey(StorageKeys.CURRENT_USER,user);
+          this.router.navigateByUrl("/pages/home");
+          this._storageService.emitIsLoggedin(false);
+        }else{
+          this._invalidUser=true; 
+        }
+    }else{
+      this._invalidUser=true; 
+    }
+      
   }
 
 }

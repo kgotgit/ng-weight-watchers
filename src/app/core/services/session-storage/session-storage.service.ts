@@ -113,6 +113,31 @@ export class SessionStorageService extends BaseService {
     }); 
   }
 
+  /**
+   * Get PersonDetail object for given username
+   * @param userName 
+   */
+  getUserForGivenUserName(userName:string):Observable<IPersonDetails>{
+    return new Observable<IPersonDetails>(observer=>{
+      //get all users from session
+      this.getUsersFromSession().pipe(
+        map((users:IPersonDetails[])=>{
+            let user:IPersonDetails=null;
+          if(this.isValidArrayWithData(users)){
+            //Filter user by given username
+            let filteredUser:IPersonDetails[]=users.filter((iuser:IPersonDetails)=>{return iuser.username===userName});
+            //set filtered user and return
+            user=(this.isValidArrayWithData(filteredUser))?filteredUser[0]:null;
+          }
+            return user;
+        })
+      ).subscribe((data:IPersonDetails)=>{
+        observer.next(data);
+        observer.complete();
+      })
+    }); 
+  }
+
 
   /**
    * Process requested url and respond with data accordingly.

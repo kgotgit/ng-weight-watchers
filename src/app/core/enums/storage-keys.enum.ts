@@ -1,4 +1,5 @@
 export enum StorageKeys{
-    USER_PROFILES="USER_PROFILES"
+    USER_PROFILES="USER_PROFILES",
+    CURRENT_USER="CURRENT_USER",
 
 }

@@ -22,11 +22,15 @@
                 Password is required.
               </mat-error>              
             </mat-form-field>
+            <mat-error *ngIf="_invalidUser">
+              Username or password is incorrect
+            </mat-error>  
+           
           </div>
      </form>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="warn" (click)="login()">Login</button>
+      <button mat-raised-button color="warn" (click)="login()" [disabled]="this._loginForm.invalid">Login</button>
     </mat-card-actions>
   </mat-card>
 <br/>
@@ -37,7 +41,7 @@
     </mat-card-header>
     <mat-card-content>
       <mat-list>
-        <mat-list-item *ngFor="let user of _users$ |async"> {{user.username}}/12345</mat-list-item>        
+        <mat-list-item *ngFor="let user of _users"> {{user.username}}/12345</mat-list-item>        
        </mat-list>
     </mat-card-content>
   </mat-card>
