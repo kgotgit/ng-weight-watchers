@@ -11,7 +11,8 @@
     "gen:documentation":"compodoc -p tsconfig.json",
     "code:coverage": "ng test --watch=false --code-coverage",
     "build:prod": "ng build  --prod --base-href /ng-weight-watchers/",
-    "build:github:prod":"ng build --prod --base-href  https://kgotgit.github.io/ng-weight-watchers/"
+    "build:github:prod":"ng build --prod --base-href  https://kgotgit.github.io/ng-weight-watchers/",
+    "publish:github":"ngh --dir dist/ng-weight-watchers --no-silent"
 
 
   },
