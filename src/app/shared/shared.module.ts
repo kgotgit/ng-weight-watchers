@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { NumbersonlyDirective } from './directives/numbersonly/numbersonly.directive';
 import { CoreModule } from '../core/core.module';
+import { ValidUsernameDirective } from './directives/valid-username/valid-username.directive';
 
 
 
 @NgModule({
-  declarations: [NumbersonlyDirective],
+  declarations: [NumbersonlyDirective, ValidUsernameDirective],
   imports: [
     CommonModule,
     CoreModule,

@@ -141,7 +141,10 @@ export class LineChartComponent extends BaseComponent{
       console.log("ngDestroy called");
       d3.selectAll("svg > *").remove();
       d3.select(this.hostElement).select('svg').remove();
-      this.svg.selectAll("*").remove();
+      if(this.svg){
+        this.svg.selectAll("*").remove();
+      }
+     
       //this.svg=null;
     }
 

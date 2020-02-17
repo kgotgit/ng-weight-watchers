@@ -87,6 +87,10 @@ export class MessagesService extends AbstractBaseUtil{
     }
     return messages;
   }
+
+  clearMessages(){
+    this.emitMessages(null);
+  }
   
 
 

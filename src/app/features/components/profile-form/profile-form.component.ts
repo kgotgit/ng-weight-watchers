@@ -8,6 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
 import { IWeightHistory } from '../../models/weight-history.interface';
 import { last } from 'rxjs/operators';
+import { ValidUsernameDirective } from 'src/app/shared/directives/valid-username/valid-username.directive';
 
 @Component({
   selector: 'app-profile-form',
@@ -25,11 +26,15 @@ export class ProfileFormComponent extends BaseComponent {
  
 
   //mode to determine edit or readonly
-  @Input() mode:'edit'|'readonly'='edit';
+  @Input() mode:'edit'|'readonly'|'add'='edit';
 
 
   //emit data changed
   @Output() dataChanged=new EventEmitter<IPersonDetails>();
+
+  //On Cancel
+
+  @Output() onCancelClicked=new EventEmitter<boolean>();
    
   //local variable to hold profile picture image data url
   _imgSrc:string;
@@ -62,18 +67,22 @@ export class ProfileFormComponent extends BaseComponent {
   createFormGroup():void{
     this._profileForm=this.fb.group({
       name:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.name))?this.personDetails.name:"",disabled:this.checkForMode()},[Validators.required,Validators.maxLength(100)]),
-      age:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.age))?this.personDetails.age:"",disabled:this.checkForMode()},[NumbersonlyDirective.validateNumbersOnly,Validators.maxLength(3)]),
-      weight:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.weight))?this.personDetails.weight:"",disabled:this.checkForMode()},[NumbersonlyDirective.validateNumbersOnly,Validators.maxLength(3)]),
+      age:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.age))?this.personDetails.age:"",disabled:this.checkForMode()},[Validators.required,NumbersonlyDirective.validateNumbersOnly,Validators.maxLength(3)]),
+      weight:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.weight))?this.personDetails.weight:"",disabled:this.checkForMode()},[Validators.required, NumbersonlyDirective.validateNumbersOnly,Validators.maxLength(3)]),
       lastUpdated:new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.lastUpdated))?this.personDetails.lastUpdated:"",disabled:true},[]),
       imgSrc: new FormControl({value:(this.hasValue(this.personDetails) && this.hasValue(this.personDetails.imgSrc))?this.personDetails.imgSrc:"",disabled:false},[])
     });
+
+    if(this.mode==='add'){
+      this._profileForm.addControl("username",new FormControl({value:"",disabled:false},[ValidUsernameDirective.validateUsername,Validators.required]));
+    }
   }
 
   /**
    * 
    */
   updateFormGroup(){
-    if(this.hasValue(this._personDetails)){
+    if(this.hasValue(this._personDetails) && this.hasValue(this._profileForm)){
       this._profileForm.controls.name.setValue(this._personDetails.name);
       this._profileForm.controls.age.setValue(this._personDetails.age);
       this._profileForm.controls.weight.setValue(this._personDetails.weight);
@@ -131,7 +140,7 @@ export class ProfileFormComponent extends BaseComponent {
    * Save data via service and change the mode to readonly
    */
   onSave(){
-    this.mode="readonly";
+   
     this.changeFieldState();
     this._personDetails.name=this._profileForm.controls.name.value;
     this._personDetails.age=this._profileForm.controls.age.value;
@@ -155,8 +164,13 @@ export class ProfileFormComponent extends BaseComponent {
       }
 
     }
+    
+    if(this.mode==='add'){
+     this._personDetails.username=this._profileForm.controls.username.value;
+    }
 
     this.dataChanged.emit(this._personDetails);
+    this.mode="readonly";
   }
 
   /**
@@ -170,6 +184,8 @@ export class ProfileFormComponent extends BaseComponent {
       case "readonly":
         this.enableOrDisableFormFields(true);
         break;
+      case "add":
+        this.enableOrDisableFormFields(false);
     }
   }
 
@@ -185,6 +201,14 @@ export class ProfileFormComponent extends BaseComponent {
     }else{
       this._editProfilePic=null;
     }
+  }
+
+
+  /**
+   * On cancel clicked
+   */
+  onCancel(){
+    this.onCancelClicked.emit(true);
   }
 
  

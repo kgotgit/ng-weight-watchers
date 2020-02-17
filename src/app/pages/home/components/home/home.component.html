@@ -1,6 +1,9 @@
-<mat-card>
-    <button mat-button color="accent" title="Add new friend. Click Here" class="add-person-icon"><span class="material-icons">person_add</span></button>
-    <ng-container  *ngFor="let user of _users$|async" >
+<mat-card *ngIf="_mode=='home'">
+    <button mat-button color="accent" title="Add new friend. Click Here" class="add-person-icon" (click)="addFriend()"><span class="material-icons">person_add</span></button>
+    <ng-container  *ngFor="let user of _users$|async;trackby:trackByid" >
         <app-name-weight-card [name]="user.name" [weight]="user.weight" [id]="user.id" (cardClicked)="cardClicked($event)" (deleteClicked)="deleteClicked($event)"></app-name-weight-card>
     </ng-container>
+</mat-card>
+<mat-card *ngIf="_mode=='addFriend'">
+    <app-profile-form [personDetails]="_addNewPersonDetails" mode="add" (dataChanged)="dataChanged($event)" (onCancelClicked)="onCancelClicked($event)"></app-profile-form>
 </mat-card>

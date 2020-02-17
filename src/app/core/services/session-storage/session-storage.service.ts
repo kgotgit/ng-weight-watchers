@@ -243,6 +243,7 @@ export class SessionStorageService extends BaseService {
     if(this.hasValue(sessionStorage)){
       sessionStorage.clear();
       this.emitIsLoggedin(false);
+      this._msgService.clearMessages();
     }
   }
 
