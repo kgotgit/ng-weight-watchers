@@ -106,6 +106,9 @@
                                 <a href="#buildMessages">buildMessages</a>
                             </li>
                             <li>
+                                <a href="#clearMessages">clearMessages</a>
+                            </li>
+                            <li>
                                 <a href="#emitMessages">emitMessages</a>
                             </li>
                             <li>
@@ -250,6 +253,45 @@
                     </div>
                     <div class="io-description">
                         
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearMessages"></a>
+                    <span class="name">
+                        <b>
+                            clearMessages
+                        </b>
+                        <a href="#clearMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearMessages()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/core/services/messages/messages.service.ts:91</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
                     </div>
                 </td>
             </tr>
@@ -1162,6 +1204,10 @@ export class MessagesService extends AbstractBaseUtil{
       messages.push({&quot;type&quot;:type,message:(&lt;string&gt;msgs)} as IMessage);
     }
     return messages;
+  }
+
+  clearMessages(){
+    this.emitMessages(null);
   }
   
 

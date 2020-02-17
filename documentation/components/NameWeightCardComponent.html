@@ -161,6 +161,9 @@
                                 <a href="#onClick">onClick</a>
                             </li>
                             <li>
+                                <a href="#onDelete">onDelete</a>
+                            </li>
+                            <li>
                                 <a href="#listeToIsLoggedInStream">listeToIsLoggedInStream</a>
                             </li>
                             <li>
@@ -220,6 +223,9 @@
                             <li>
                                 <a href="#cardClicked">cardClicked</a>
                             </li>
+                            <li>
+                                <a href="#deleteClicked">deleteClicked</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -241,7 +247,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/features/components/name-weight-card/name-weight-card.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/features/components/name-weight-card/name-weight-card.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -364,6 +370,27 @@
                         </tr>
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="deleteClicked"></a>
+                        <b>deleteClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/features/components/name-weight-card/name-weight-card.component.ts:19</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
 </section>
 
 
@@ -394,8 +421,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/app/features/components/name-weight-card/name-weight-card.component.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/features/components/name-weight-card/name-weight-card.component.ts:25</a></div>
                 </td>
             </tr>
 
@@ -433,8 +460,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app/features/components/name-weight-card/name-weight-card.component.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/app/features/components/name-weight-card/name-weight-card.component.ts:32</a></div>
                 </td>
             </tr>
 
@@ -442,6 +469,47 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>emit id to the parent.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDelete"></a>
+                    <span class="name">
+                        <b>
+                            onDelete
+                        </b>
+                        <a href="#onDelete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDelete()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/features/components/name-weight-card/name-weight-card.component.ts:39</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>emit id to the parent on delete icon clicked</p>
 </div>
 
                     <div class="io-description">
@@ -1071,6 +1139,7 @@ export class NameWeightCardComponent extends BaseComponent {
   @Input() id:number;
   @Input() userName:string;
   @Output() cardClicked&#x3D;new EventEmitter&lt;number&gt;();
+  @Output() deleteClicked&#x3D;new EventEmitter&lt;number&gt;();
 
   constructor() { 
     super();
@@ -1087,6 +1156,13 @@ export class NameWeightCardComponent extends BaseComponent {
     this.cardClicked.emit(this.id);
   }
 
+  /**
+   * emit id to the parent on delete icon clicked
+   */
+  onDelete(){
+    this.deleteClicked.emit(this.id);
+  }
+
 }
 </code></pre>
     </div>
@@ -1095,7 +1171,7 @@ export class NameWeightCardComponent extends BaseComponent {
         <pre class="line-numbers"><code class="language-html">&lt;mat-card&gt;    
     &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;onClick()&quot;&gt;{{name}}&lt;/button&gt;
     &lt;h1&gt;{{weight}} &lt;span class&#x3D;&quot;suffix&quot;&gt;lbs&lt;/span&gt;&lt;/h1&gt;
-    &lt;button mat-button color&#x3D;&quot;warn&quot; title&#x3D;&quot;Delete. Click Here&quot; class&#x3D;&quot;delete-icon&quot;&gt;&lt;span class&#x3D;&quot;material-icons&quot;&gt;delete_forever&lt;/span&gt;&lt;/button&gt;
+    &lt;button mat-button color&#x3D;&quot;warn&quot; title&#x3D;&quot;Delete. Click Here&quot; class&#x3D;&quot;delete-icon&quot; (click)&#x3D;&quot;onDelete()&quot;&gt;&lt;span class&#x3D;&quot;material-icons&quot;&gt;delete_forever&lt;/span&gt;&lt;/button&gt;
 &lt;/mat-card&gt;</code></pre>
     </div>
 
@@ -1152,9 +1228,9 @@ export class NameWeightCardComponent extends BaseComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-card>        <button mat-raised-button color="primary" (click)="onClick()">{{name}}</button>    <h1>{{weight}} <span class="suffix">lbs</span></h1>    <button mat-button color="warn" title="Delete. Click Here" class="delete-icon"><span class="material-icons">delete_forever</span></button></mat-card></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-card>        <button mat-raised-button color="primary" (click)="onClick()">{{name}}</button>    <h1>{{weight}} <span class="suffix">lbs</span></h1>    <button mat-button color="warn" title="Delete. Click Here" class="delete-icon" (click)="onDelete()"><span class="material-icons">delete_forever</span></button></mat-card></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'NameWeightCardComponent', 'selector': 'app-name-weight-card'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'PersonalDashboardComponent', 'selector': 'app-personal-dashboard'},{'name': 'ProfileFormComponent', 'selector': 'app-profile-form'},{'name': 'TopToolbarComponent', 'selector': 'app-top-toolbar'}];
-    var DIRECTIVES = [{'name': 'NumbersonlyDirective', 'selector': '[appNumbersonly]'}];
+    var DIRECTIVES = [{'name': 'NumbersonlyDirective', 'selector': '[appNumbersonly]'},{'name': 'ValidUsernameDirective', 'selector': '[appValidUsername]'}];
     var ACTUAL_COMPONENT = {'name': 'NameWeightCardComponent'};
 </script>
 <script src="../js/tree.js"></script>

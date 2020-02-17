@@ -130,6 +130,9 @@
                                 <a href="#handleMessagesFromResponse">handleMessagesFromResponse</a>
                             </li>
                             <li>
+                                <a href="#invokeDelete">invokeDelete</a>
+                            </li>
+                            <li>
                                 <a href="#invokeGet">invokeGet</a>
                             </li>
                             <li>
@@ -404,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="121"
-                            class="link-to-prism">src/app/core/abstract-base/base.service.ts:121</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/app/core/abstract-base/base.service.ts:139</a></div>
                 </td>
             </tr>
 
@@ -443,8 +446,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/app/core/abstract-base/base.service.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/app/core/abstract-base/base.service.ts:135</a></div>
                 </td>
             </tr>
 
@@ -548,8 +551,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/app/core/abstract-base/base.service.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/core/abstract-base/base.service.ts:111</a></div>
                 </td>
             </tr>
 
@@ -601,6 +604,78 @@
                     </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="invokeDelete"></a>
+                    <span class="name">
+                        <b>
+                            invokeDelete
+                        </b>
+                        <a href="#invokeDelete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>invokeDelete(request: <a href="../interfaces/ServiceRequest.html">ServiceRequest<any></a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/app/core/abstract-base/base.service.ts:88</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Used by child services to invoke delete operation</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>request</td>
+                                    <td>
+                                                <code><a href="../interfaces/ServiceRequest.html" target="_self" >ServiceRequest&lt;any&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/ServiceResponse.html" target="_self" >Observable&lt;ServiceResponse&lt;any&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -1220,6 +1295,24 @@ export abstract class BaseService extends AbstractBaseUtil{
      */
     invokePut(request:ServiceRequest&lt;any&gt;):Observable&lt;ServiceResponse&lt;any&gt;&gt;{
         return this._http.put&lt;ServiceResponse&lt;any&gt;&gt;(this._REST_URL+request.url,request.data,this._httpOptions).pipe(
+            tap((response:ServiceResponse&lt;any&gt;)&#x3D;&gt;{//side effect
+                //handle any error messages from service based on the handleError flag set by the caller.
+               this.handleMessagesFromResponse(request,response);
+           }),
+           catchError((err)&#x3D;&gt;{
+            //use logger service to log errors
+            //return service error exception
+            return of(this.buildErrorResponse());
+           })
+        );
+    }
+
+    /**
+     * Used by child services to invoke delete operation
+     * @param request 
+     */
+    invokeDelete(request:ServiceRequest&lt;any&gt;):Observable&lt;ServiceResponse&lt;any&gt;&gt;{
+        return this._http.delete(this._REST_URL+request.url,this._httpOptions).pipe(
             tap((response:ServiceResponse&lt;any&gt;)&#x3D;&gt;{//side effect
                 //handle any error messages from service based on the handleError flag set by the caller.
                this.handleMessagesFromResponse(request,response);

@@ -996,6 +996,7 @@ export class AppComponent extends BaseComponent{
   &lt;div class&#x3D;&quot;mdc-layout-grid__inner&quot;&gt;
     &lt;div class&#x3D;&quot;mdc-layout-grid__cell mdc-layout-grid__cell--span-2 demo-cell&quot;&gt;&lt;/div&gt;
     &lt;div class&#x3D;&quot;mdc-layout-grid__cell mdc-layout-grid__cell--span-8 demo-cell&quot;&gt;
+       &lt;app-messages&gt;&lt;/app-messages&gt;
         &lt;!--TODO: breadcrumb would be better--&gt;
         &lt;button mat-raised-button color&#x3D;&quot;warn&quot; title&#x3D;&quot;Back to Home. Click Here&quot; (click)&#x3D;&quot;goHome()&quot; *ngIf&#x3D;&quot;_isLoggedIn&quot;&gt;&lt;span class&#x3D;&quot;material-icons&quot;&gt;home&lt;/span&gt;&lt;/button&gt;
      
@@ -1042,9 +1043,9 @@ export class AppComponent extends BaseComponent{
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-top-toolbar></app-top-toolbar><div class="mdc-layout-grid container">  <div class="mdc-layout-grid__inner">    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 demo-cell"></div>    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8 demo-cell">        <!--TODO: breadcrumb would be better-->        <button mat-raised-button color="warn" title="Back to Home. Click Here" (click)="goHome()" *ngIf="_isLoggedIn"><span class="material-icons">home</span></button>           <router-outlet></router-outlet>    </div>    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 demo-cell"></div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><app-top-toolbar></app-top-toolbar><div class="mdc-layout-grid container">  <div class="mdc-layout-grid__inner">    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 demo-cell"></div>    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8 demo-cell">       <app-messages></app-messages>        <!--TODO: breadcrumb would be better-->        <button mat-raised-button color="warn" title="Back to Home. Click Here" (click)="goHome()" *ngIf="_isLoggedIn"><span class="material-icons">home</span></button>           <router-outlet></router-outlet>    </div>    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 demo-cell"></div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'NameWeightCardComponent', 'selector': 'app-name-weight-card'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'PersonalDashboardComponent', 'selector': 'app-personal-dashboard'},{'name': 'ProfileFormComponent', 'selector': 'app-profile-form'},{'name': 'TopToolbarComponent', 'selector': 'app-top-toolbar'}];
-    var DIRECTIVES = [{'name': 'NumbersonlyDirective', 'selector': '[appNumbersonly]'}];
+    var DIRECTIVES = [{'name': 'NumbersonlyDirective', 'selector': '[appNumbersonly]'},{'name': 'ValidUsernameDirective', 'selector': '[appValidUsername]'}];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>
 <script src="../js/tree.js"></script>

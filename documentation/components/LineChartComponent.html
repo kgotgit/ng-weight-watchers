@@ -1772,7 +1772,10 @@ export class LineChartComponent extends BaseComponent{
       console.log(&quot;ngDestroy called&quot;);
       d3.selectAll(&quot;svg &gt; *&quot;).remove();
       d3.select(this.hostElement).select(&#x27;svg&#x27;).remove();
-      this.svg.selectAll(&quot;*&quot;).remove();
+      if(this.svg){
+        this.svg.selectAll(&quot;*&quot;).remove();
+      }
+     
       //this.svg&#x3D;null;
     }
 
@@ -1841,7 +1844,7 @@ export class LineChartComponent extends BaseComponent{
 <script>
         var COMPONENT_TEMPLATE = '<div><h1>Weight Chart</h1><!-- <svg width="900" height="500"></svg> --></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'NameWeightCardComponent', 'selector': 'app-name-weight-card'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'PersonalDashboardComponent', 'selector': 'app-personal-dashboard'},{'name': 'ProfileFormComponent', 'selector': 'app-profile-form'},{'name': 'TopToolbarComponent', 'selector': 'app-top-toolbar'}];
-    var DIRECTIVES = [{'name': 'NumbersonlyDirective', 'selector': '[appNumbersonly]'}];
+    var DIRECTIVES = [{'name': 'NumbersonlyDirective', 'selector': '[appNumbersonly]'},{'name': 'ValidUsernameDirective', 'selector': '[appValidUsername]'}];
     var ACTUAL_COMPONENT = {'name': 'LineChartComponent'};
 </script>
 <script src="../js/tree.js"></script>

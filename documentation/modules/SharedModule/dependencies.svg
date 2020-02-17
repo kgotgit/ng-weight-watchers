@@ -22,61 +22,73 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_SharedModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="105,-70 105,-268 391,-268 391,-70 105,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="18,-70 18,-268 478,-268 478,-70 18,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_SharedModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="223,-78 223,-130 383,-130 383,-78 223,-78"/>
-</g>
-<g id="clust4" class="cluster">
-<title>cluster_SharedModule_imports</title>
-<polygon fill="none" stroke="#000000" points="113,-78 113,-130 215,-130 215,-78 113,-78"/>
+<polygon fill="none" stroke="#000000" points="136,-78 136,-130 470,-130 470,-78 136,-78"/>
 </g>
 <g id="clust5" class="cluster">
+<title>cluster_SharedModule_imports</title>
+<polygon fill="none" stroke="#000000" points="26,-78 26,-130 128,-130 128,-78 26,-78"/>
+</g>
+<g id="clust6" class="cluster">
 <title>cluster_SharedModule_exports</title>
-<polygon fill="none" stroke="#000000" points="166,-208 166,-260 330,-260 330,-208 166,-208"/>
+<polygon fill="none" stroke="#000000" points="140,-208 140,-260 304,-260 304,-208 140,-208"/>
 </g>
 <!-- NumbersonlyDirective -->
 <g id="node1" class="node">
 <title>NumbersonlyDirective</title>
-<polygon fill="#ffffb3" stroke="#000000" points="375.2907,-122 230.7093,-122 230.7093,-86 375.2907,-86 375.2907,-122"/>
-<text text-anchor="middle" x="303" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">NumbersonlyDirective</text>
+<polygon fill="#ffffb3" stroke="#000000" points="462.2907,-122 317.7093,-122 317.7093,-86 462.2907,-86 462.2907,-122"/>
+<text text-anchor="middle" x="390" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">NumbersonlyDirective</text>
 </g>
 <!-- SharedModule -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="297.4231,-187 294.4231,-191 273.4231,-191 270.4231,-187 198.5769,-187 198.5769,-151 297.4231,-151 297.4231,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="271.4231,-187 268.4231,-191 247.4231,-191 244.4231,-187 172.5769,-187 172.5769,-151 271.4231,-151 271.4231,-187"/>
+<text text-anchor="middle" x="222" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">SharedModule</text>
 </g>
 <!-- NumbersonlyDirective&#45;&gt;SharedModule -->
 <g id="edge1" class="edge">
 <title>NumbersonlyDirective&#45;&gt;SharedModule</title>
-<path fill="none" stroke="#000000" d="M264.033,-122.1061C264.033,-122.1061 264.033,-140.991 264.033,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="260.533,-140.9909 264.033,-150.991 267.533,-140.991 260.533,-140.9909"/>
+<path fill="none" stroke="#000000" d="M390,-122.1061C390,-141.3391 390,-169 390,-169 390,-169 281.4969,-169 281.4969,-169"/>
+<polygon fill="#000000" stroke="#000000" points="281.4969,-165.5001 271.4969,-169 281.4969,-172.5001 281.4969,-165.5001"/>
+</g>
+<!-- ValidUsernameDirective -->
+<g id="node2" class="node">
+<title>ValidUsernameDirective</title>
+<polygon fill="#ffffb3" stroke="#000000" points="299.9314,-122 144.0686,-122 144.0686,-86 299.9314,-86 299.9314,-122"/>
+<text text-anchor="middle" x="222" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ValidUsernameDirective</text>
+</g>
+<!-- ValidUsernameDirective&#45;&gt;SharedModule -->
+<g id="edge2" class="edge">
+<title>ValidUsernameDirective&#45;&gt;SharedModule</title>
+<path fill="none" stroke="#000000" d="M222,-122.1061C222,-122.1061 222,-140.991 222,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="218.5001,-140.9909 222,-150.991 225.5001,-140.991 218.5001,-140.9909"/>
 </g>
 <!-- NumbersonlyDirective  -->
-<g id="node4" class="node">
+<g id="node5" class="node">
 <title>NumbersonlyDirective </title>
-<polygon fill="#fb8072" stroke="#000000" points="321.7905,-252 174.2095,-252 174.2095,-216 321.7905,-216 321.7905,-252"/>
-<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">NumbersonlyDirective </text>
+<polygon fill="#fb8072" stroke="#000000" points="295.7905,-252 148.2095,-252 148.2095,-216 295.7905,-216 295.7905,-252"/>
+<text text-anchor="middle" x="222" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">NumbersonlyDirective </text>
 </g>
 <!-- SharedModule&#45;&gt;NumbersonlyDirective  -->
-<g id="edge3" class="edge">
+<g id="edge4" class="edge">
 <title>SharedModule&#45;&gt;NumbersonlyDirective </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M222,-187.1061C222,-187.1061 222,-205.991 222,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="218.5001,-205.9909 222,-215.991 225.5001,-205.991 218.5001,-205.9909"/>
 </g>
 <!-- CoreModule -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>CoreModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="207.2619,-122 204.2619,-126 183.2619,-126 180.2619,-122 120.7381,-122 120.7381,-86 207.2619,-86 207.2619,-122"/>
-<text text-anchor="middle" x="164" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">CoreModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="120.2619,-122 117.2619,-126 96.2619,-126 93.2619,-122 33.7381,-122 33.7381,-86 120.2619,-86 120.2619,-122"/>
+<text text-anchor="middle" x="77" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">CoreModule</text>
 </g>
 <!-- CoreModule&#45;&gt;SharedModule -->
-<g id="edge2" class="edge">
+<g id="edge3" class="edge">
 <title>CoreModule&#45;&gt;SharedModule</title>
-<path fill="none" stroke="#000000" d="M203.0849,-122.1061C203.0849,-122.1061 203.0849,-140.991 203.0849,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="199.5849,-140.9909 203.0849,-150.991 206.5849,-140.991 199.5849,-140.9909"/>
+<path fill="none" stroke="#000000" d="M77,-122.1061C77,-141.3391 77,-169 77,-169 77,-169 162.5048,-169 162.5048,-169"/>
+<polygon fill="#000000" stroke="#000000" points="162.5048,-172.5001 172.5048,-169 162.5047,-165.5001 162.5048,-172.5001"/>
 </g>
 </g>
 </svg>

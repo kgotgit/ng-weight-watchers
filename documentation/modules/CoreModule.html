@@ -275,7 +275,9 @@ import { MaterialModule } from &#x27;./material/material.module&#x27;;
 import { MessagesComponent } from &#x27;./components/messages/messages.component&#x27;;
 import { LoginComponent } from &#x27;./components/login/login.component&#x27;;
 import { PageNotFoundComponent } from &#x27;./components/page-not-found/page-not-found.component&#x27;;
-import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { ReactiveFormsModule, FormsModule } from &#x27;@angular/forms&#x27;;
+import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
 
 
 
@@ -284,7 +286,10 @@ import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
   imports: [
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+ 
+    
   ],
   exports:[TopToolbarComponent,MaterialModule,LoginComponent]
 })
