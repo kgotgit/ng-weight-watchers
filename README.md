@@ -2,18 +2,19 @@
 
 
 ## Development server   
-Use 'npm start' to start development server at http://localhost:4200
+Use `npm start` to start development server at http://localhost:4200
 
-## Build
-Use 'npm run build:prod' to make a prod build
+## Prod Build
+Use `npm run build:prod` to make a prod build
 
 ## Running unit tests
-Use 'npm run test' to run unit testing using Karma/Jasmin
+Use `npm run test` to run unit testing using Karma/Jasmin
 
 
 ## Running code coverage test
-Use 'npm run code:coverage'. Sample output will have something similar
+Use `npm run code:coverage`. 
 
+Sample output will have something similar and percent may change based on number unit testing implemented.
 ### code coverage results
 
 Statements   : 31.51% ( 144/457 )
@@ -27,7 +28,11 @@ TODO: implement cypress.io e2e testing
 
 ## Documentaiton
 
-Use 'npm run code:coverage' to generate the documentation using compodoc. 
-The generated documentation for the project is available under 'documentation' folder. Launch 'index.html' to get an overview of the application.
-eg., /ng-weight-watchers/documentation/overview.html
+Use `npm run gen:documentation` to generate the documentation using '@compodoc' (see https://compodoc.app/)
+
+The generated documentation for the project is available under `documentation` folder. 
+
+Launch `index.html` to get an overview of the application.
+
+eg., /ng-weight-watchers/documentation/index.html
 
